@@ -55,13 +55,61 @@ class HomeVC: UITableViewController, UITabBarControllerDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> HomeCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! HomeCell
+        
+        let round = allRounds[indexPath.row]
 
-        cell.titleLabel?.text = allRounds[indexPath.row].label_long
+        cell.titleLabel?.text = round.label_long
         
-        let sched1 = cal.date(from: allRounds[indexPath.row].schedStart)
-        let sched2 = DateFormatter.localizedString(from: sched1!, dateStyle: .none, timeStyle: .short)
+        let sdelay = round.estStart.timeIntervalSince(round.schedStart)
+        if sdelay > 0 {
+            cell.scheddelay?.text =  "Estimated +\(String(Int(sdelay/60)))m"
+        } else {
+            cell.scheddelay?.text = "Estimated \(String(Int(sdelay/60)))m"
+        }
         
-        cell.sched?.text = "Scheduled \(sched2)"
+        if sdelay == 0 {
+           cell.scheddelay?.textColor = UIColor.blue
+        } else if sdelay < 0 {
+            cell.scheddelay?.textColor = UIColor.green
+        } else if sdelay < 901 {
+            cell.scheddelay?.textColor = UIColor.orange
+        } else {
+            cell.scheddelay?.textColor = UIColor.red
+        }
+        
+        if round.status == "past" {
+            let adelay = round.actStart!.timeIntervalSince(round.schedStart)
+            cell.scheddelay?.textColor = UIColor.lightGray
+            
+            if adelay > 0 {
+                cell.actdelay?.text = "Actual +\(String(Int(adelay/60)))m"
+            } else {
+                cell.actdelay?.text = "Actual \(String(Int(adelay/60)))m"
+            }
+            
+            if adelay == 0 {
+                cell.actdelay?.textColor = UIColor.blue
+            } else if adelay < 0 {
+                cell.actdelay?.textColor = UIColor.green
+            } else if adelay < 901 {
+                cell.actdelay?.textColor = UIColor.orange
+            } else {
+                cell.actdelay?.textColor = UIColor.red
+            }
+            
+        } else {
+            cell.actdelay?.text = ""
+        }
+        
+        
+        
+        
+        
+        
+        
+        let sched = DateFormatter.localizedString(from: round.schedStart, dateStyle: .none, timeStyle: .short)
+        
+        cell.sched?.text = "Scheduled \(sched)"
         
         // Set corner properties of row labels
         cell.row1.layer.cornerRadius = 10.0
@@ -77,20 +125,15 @@ class HomeVC: UITableViewController, UITabBarControllerDelegate {
         
         // For now SNS calculator doesn't exist, so we just go with option 2 and row 3 just saying "SNS"
         
-        let est1 = cal.date(from: allRounds[indexPath.row].estStart)
-        let est2 = DateFormatter.localizedString(from: est1!, dateStyle: .none, timeStyle: .short)
-        
-        let cic1 = cal.date(from: allRounds[indexPath.row].checkincloses)
-        let cic2 = DateFormatter.localizedString(from: cic1!, dateStyle: .none, timeStyle: .short)
-        
-        let sns1 = cal.date(from: allRounds[indexPath.row].snsStart)
-        let sns2 = DateFormatter.localizedString(from: sns1!, dateStyle: .none, timeStyle: .short)
+        let est = DateFormatter.localizedString(from: round.estStart, dateStyle: .none, timeStyle: .short)
+        let cic = DateFormatter.localizedString(from: round.checkincloses, dateStyle: .none, timeStyle: .short)
+        let sns = DateFormatter.localizedString(from: round.snsStart, dateStyle: .none, timeStyle: .short)
         
         
         
-        cell.row1?.text = "Estimated \(est2)"
-        cell.row2?.text = "CIC \(cic2)"
-        cell.row3?.text = "SNS \(sns2)"
+        cell.row1?.text = "Estimated \(est)"
+        cell.row2?.text = "CIC \(cic)"
+        cell.row3?.text = "SNS \(sns)"
         
         cell.row1.backgroundColor = UIColor.yellow
         cell.row2.backgroundColor = UIColor.cyan
@@ -102,27 +145,19 @@ class HomeVC: UITableViewController, UITabBarControllerDelegate {
             row?.layer.cornerRadius = 10.0
             row?.clipsToBounds = true
         }
-        
-        
-        
-        
-        
-        
-        
-        
-       
-        
-        
         return cell
-        
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        
         viewController.viewDidLoad()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Check if the status is past, disallow editing if so
+        if allRounds[indexPath.row].status == "past" {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
         
         //1: Try loading the detailVC
         if let vc = storyboard?.instantiateViewController(withIdentifier: "EditTimes") as? EditTimesVC {
@@ -133,9 +168,7 @@ class HomeVC: UITableViewController, UITabBarControllerDelegate {
             
             //3: Push controller
             navigationController?.pushViewController(vc, animated: true)
-            
         }
-        
     }
     
     
@@ -165,16 +198,9 @@ class HomeVC: UITableViewController, UITabBarControllerDelegate {
         self.present(ac, animated: true)
     }
     
-    func reset2() {
-        
-    }
-    
     
     @objc func scheduleLocal() {
-        
-    
-        
-        
+
         let center = UNUserNotificationCenter.current()
         
         let content = UNMutableNotificationContent()

@@ -12,8 +12,8 @@ class EditTimesVC: UITableViewController {
     
     var index:Int!
     var round:String!
-    var currentStart:DateComponents!
-    var newStart:DateComponents!
+    var currentStart:Date!
+    var newStart:Date!
     var diff : TimeInterval = 0
     
     @IBOutlet weak var sched: UILabel!
@@ -26,14 +26,12 @@ class EditTimesVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
+        current.text = DateFormatter.localizedString(from: currentStart!, dateStyle: .none, timeStyle: .short)
+        new.text = DateFormatter.localizedString(from: currentStart!, dateStyle: .none, timeStyle: .short)
         
-        let currentStart2 = cal.date(from: currentStart)
-        
-        current.text = DateFormatter.localizedString(from: currentStart2!, dateStyle: .none, timeStyle: .short)
-        new.text = DateFormatter.localizedString(from: currentStart2!, dateStyle: .none, timeStyle: .short)
-        
-        dp.date = currentStart2!
+        dp.date = currentStart!
         
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Edit \(round!)"
@@ -42,9 +40,8 @@ class EditTimesVC: UITableViewController {
         
         diff = allRounds[index].estDelay
         delay.text = "\(String(Int(diff/60))) minutes"
+        sched.text = DateFormatter.localizedString(from: allRounds[index].schedStart, dateStyle: .none, timeStyle: .short)
         
-        let schedStart2 = cal.date(from: allRounds[index].schedStart)
-        sched.text = DateFormatter.localizedString(from: schedStart2!, dateStyle: .none, timeStyle: .short)
         
         
         
@@ -59,27 +56,24 @@ class EditTimesVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
     @IBAction func dpShowDateAction(_ sender: Any) {
         new.text = DateFormatter.localizedString(from: dp.date, dateStyle: .none, timeStyle: .short)
         print(dp.date)
         
-        diff = dp.date.timeIntervalSince(cal.date(from: allRounds[index].schedStart)!)
+        diff = dp.date.timeIntervalSince(allRounds[index].schedStart)
         
         delay.text = "\(String(Int(diff/60))) minutes"
-        
-        
     }
     
     @objc func saveNewTime() {
         
         // Update the round variable estStart
-        allRounds[index].estStart = cal.dateComponents([.hour, .minute, .second], from: dp.date)
+        allRounds[index].estStart = dp.date
         
         // Offset check-in if required
         if offsetcheckin.isOn {
-            let cic2 = cal.date(from: allRounds[index].checkincloses)
-            let newcic = cic2?.addingTimeInterval(diff)
-            allRounds[index].checkincloses = cal.dateComponents([.year, .month, .day, .hour, .minute, .second], from: newcic!)
+            allRounds[index].checkincloses = allRounds[index].checkincloses.addingTimeInterval(diff)
         }
         
         // Update the estDelay

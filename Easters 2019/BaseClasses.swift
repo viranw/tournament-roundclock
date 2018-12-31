@@ -29,15 +29,16 @@ class round: NSObject, Codable {
     var label_long:String!
     var label_short:String!
     var status:String
-    var schedStart:DateComponents
-    var estStart:DateComponents
-    var checkincloses:DateComponents
-    var snsStart:DateComponents
+    var schedStart:Date
+    var estStart:Date
+    var actStart:Date?
+    var checkincloses:Date
+    var snsStart:Date
     var estDelay:TimeInterval = 0
     
     
     
-    init(seq:Int, label_long:String, label_short:String,status:String,schedStart:DateComponents) {
+    init(seq:Int, label_long:String, label_short:String,status:String,schedStart:Date) {
         self.seq = seq
         self.label_long = label_long
         self.label_short = label_short
@@ -47,9 +48,7 @@ class round: NSObject, Codable {
         self.snsStart = schedStart
         
         let cal = Calendar(identifier: .gregorian)
-        let schedStartDated = cal.date(from: schedStart)!
-        let cic = schedStartDated.addingTimeInterval(-1200)
-        self.checkincloses = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: cic)
+        self.checkincloses = schedStart.addingTimeInterval(-1200)
         
     }
     

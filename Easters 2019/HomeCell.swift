@@ -12,6 +12,8 @@ class HomeCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var sched: UILabel!
+    @IBOutlet weak var scheddelay: UILabel!
+    @IBOutlet weak var actdelay: UILabel!
     @IBOutlet weak var row1: UILabel!
     @IBOutlet weak var row2: UILabel!
     @IBOutlet weak var row3: UILabel!
