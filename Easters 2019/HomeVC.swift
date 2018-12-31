@@ -64,7 +64,7 @@ class HomeVC: UITableViewController {
         cell.sched?.text = "Scheduled \(sched)"
         
         // Left sched/act delay - Text and formatting
-        if round.isComplete {
+        if round.isStarted {
             let adelay = round.actStart!.timeIntervalSince(round.schedStart)
             cell.delayleft?.textColor = UIColor.lightGray
             
@@ -112,7 +112,7 @@ class HomeVC: UITableViewController {
         
         // If the round is past, display the release time on the grey label and hide the rest
         // If not, populate and format accordingly
-        if round.isComplete {
+        if round.isStarted {
             let act = DateFormatter.localizedString(from: round.actStart!, dateStyle: .none, timeStyle: .short)
             cell.row1.text = "Released \(act)"
             cell.row1.layer.backgroundColor = UIColor.lightGray.cgColor
@@ -153,76 +153,90 @@ class HomeVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if allRounds[indexPath.row].isComplete {
+        if allRounds[indexPath.row].isStarted {
             return 100
         } else {
             return 185
         }
     }
     
-    func completeRound(index: Int) {
-        allRounds[index].isComplete = !allRounds[index].isComplete
+    func startRound(index: Int) {
+        allRounds[index].isStarted = !allRounds[index].isStarted
         allRounds[index].actStart = Date()
+        allRounds[index].firstBallot = nil
+        allRounds[index].roundCompleted = nil
         writeRounds()
     }
     
-    func uncompleteRound(index: Int) {
-        allRounds[index].isComplete = !allRounds[index].isComplete
+    func unstartRound(index: Int) {
+        allRounds[index].isStarted = !allRounds[index].isStarted
         allRounds[index].actStart = nil
+        allRounds[index].firstBallot = nil
+        allRounds[index].roundCompleted = nil
         writeRounds()
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let complete = UITableViewRowAction(style: .default, title: "Complete") {(action, indexPath) in
-            if allRounds[indexPath.row].isComplete {
-                let ac = UIAlertController(title: "Invalid Completion", message: "\(allRounds[indexPath.row].label_long!) is already complete.", preferredStyle: .alert)
+        let start = UITableViewRowAction(style: .default, title: "Start") {(action, indexPath) in
+            if allRounds[indexPath.row].isStarted {
+                let ac = UIAlertController(title: "Invalid Start", message: "\(allRounds[indexPath.row].label_long!) is already marked as started.", preferredStyle: .alert)
                 ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(ac, animated: true)
             } else {
-                self.completeRound(index: indexPath.row)
+                self.startRound(index: indexPath.row)
             }
             
             self.tableView.reloadData()
         }
         
-        let uncomplete = UITableViewRowAction(style: .default, title: "Uncomplete") {(action, indexPath) in
-            if !allRounds[indexPath.row].isComplete {
-                let ac = UIAlertController(title: "Invalid Uncompletion", message: "\(allRounds[indexPath.row].label_long!) is not complete.", preferredStyle: .alert)
+        let unstart = UITableViewRowAction(style: .default, title: "Unstart") {(action, indexPath) in
+            if !allRounds[indexPath.row].isStarted {
+                let ac = UIAlertController(title: "Invalid Unstart", message: "\(allRounds[indexPath.row].label_long!) is not marked as started yet.", preferredStyle: .alert)
                 ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(ac, animated: true)
             } else {
-                self.uncompleteRound(index: indexPath.row)
+                self.unstartRound(index: indexPath.row)
             }
             self.tableView.reloadData()
         }
         
-        if allRounds[indexPath.row].isComplete {
-            complete.backgroundColor = UIColor.gray
-            uncomplete.backgroundColor = UIColor.orange
+        if allRounds[indexPath.row].isStarted {
+            start.backgroundColor = UIColor.gray
+            unstart.backgroundColor = UIColor.orange
         } else {
-            complete.backgroundColor = UIColor.green
-            uncomplete.backgroundColor = UIColor.gray
+            start.backgroundColor = UIColor.green
+            unstart.backgroundColor = UIColor.gray
         }
         
-        return [complete, uncomplete]
+        return [start, unstart]
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "detail") as? detailVC {
+            // Pass variables
+            vc.roundIndex = indexPath.row
+            
+            // Push controller
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        
+        
         // Check if the status is past, disallow editing if so
-        if allRounds[indexPath.row].isComplete {
+        if allRounds[indexPath.row].isStarted {
             tableView.deselectRow(at: indexPath, animated: false)
             tableView.reloadData()
         } else {
             //1: Try loading the detailVC
-            if let vc = storyboard?.instantiateViewController(withIdentifier: "EditTimes") as? EditTimesVC {
+            if let detailvc = storyboard?.instantiateViewController(withIdentifier: "detail") as? EditTimesVC {
                 // Pass variables
-                vc.currentStart = allRounds[indexPath.row].estStart
-                vc.round = allRounds[indexPath.row].label_long
-                vc.index = indexPath.row
+                detailvc.currentStart = allRounds[indexPath.row].estStart
+                detailvc.round = allRounds[indexPath.row].label_long
+                detailvc.index = indexPath.row
                 
                 //3: Push controller
-                navigationController?.pushViewController(vc, animated: true)
+                navigationController?.pushViewController(detailvc, animated: true)
             }
         }
         

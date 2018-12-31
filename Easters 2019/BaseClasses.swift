@@ -28,7 +28,7 @@ class round: NSObject, Codable {
     var seq:Int!
     var label_long:String!
     var label_short:String!
-    var isComplete:Bool
+    var isStarted:Bool
     var schedStart:Date
     var estStart:Date
     var actStart:Date?
@@ -38,19 +38,22 @@ class round: NSObject, Codable {
     var shiftDelay:TimeInterval = 0
     var day:Int
     
+    var adjAllocCompleted:Date?
+    var drawReleased:Date?
+    var debatesStart:Date?
+    var firstBallot:Date?
+    var roundCompleted:Date?
     
-    
-    init(seq:Int, label_long:String, label_short:String,isComplete:Bool, day:Int, schedStart:Date) {
+    init(seq:Int, label_long:String, label_short:String,isStarted:Bool, day:Int, schedStart:Date) {
         self.seq = seq
         self.label_long = label_long
         self.label_short = label_short
-        self.isComplete = isComplete
+        self.isStarted = isStarted
         self.day = day
         self.schedStart = schedStart
         self.estStart = schedStart
         self.snsStart = schedStart
         
-        let cal = Calendar(identifier: .gregorian)
         self.checkincloses = schedStart.addingTimeInterval(-1200)
         
     }
