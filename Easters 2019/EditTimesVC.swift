@@ -22,6 +22,7 @@ class EditTimesVC: UITableViewController {
     @IBOutlet weak var current: UILabel!
     @IBOutlet weak var new: UILabel!
     @IBOutlet weak var delay: UILabel!
+    @IBOutlet weak var shiftRounds: UISwitch!
     
     
     override func viewDidLoad() {
@@ -90,13 +91,26 @@ class EditTimesVC: UITableViewController {
         // Update the round variable estStart
         allRounds[index].estStart = dp.date
         
+        
         // Offset check-in if required
         if offsetcheckin.isOn {
             allRounds[index].checkincloses = allRounds[index].estStart.addingTimeInterval(-1200)
         }
         
-        // Update the estDelay
+        if shiftRounds.isOn {
+            for i in (index+1...allRounds.count-1) {
+                allRounds[i].shiftDelay += diff
+                print(allRounds[i].shiftDelay)
+                //Shift schedule back by x minutes
+                allRounds[i].estStart = allRounds[i].schedStart.addingTimeInterval(allRounds[i].shiftDelay)
+                //Add any other independent delay factors already programmed in
+                allRounds[i].estStart = allRounds[i].estStart.addingTimeInterval(allRounds[i].estDelay)
+                allRounds[i].checkincloses = allRounds[i].estStart.addingTimeInterval(-1200)
+            }
+        }
+        
         allRounds[index].estDelay = diff
+    
     
         // Save array
         writeRounds()

@@ -35,6 +35,7 @@ class round: NSObject, Codable {
     var checkincloses:Date
     var snsStart:Date
     var estDelay:TimeInterval = 0
+    var shiftDelay:TimeInterval = 0
     
     
     
@@ -65,8 +66,12 @@ func writeRounds() {
     }
 }
 
-func loadRounds() {
+func totalDelay(for round: round) -> TimeInterval {
+    var d = 0.0
+    d += round.estDelay
+    d += round.shiftDelay
     
+    return d
 }
 
 

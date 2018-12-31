@@ -120,13 +120,13 @@ class HomeVC: UITableViewController, UITabBarControllerDelegate {
         cell.row2.clipsToBounds = true
         cell.row3.clipsToBounds = true
         
-        if round.estDelay == 0 {
+        if totalDelay(for: round) == 0 {
             cell.row1.layer.backgroundColor = UIColor.yellow.cgColor
             cell.row1.textColor = UIColor.black
-        } else if round.estDelay < 0 {
+        } else if totalDelay(for: round) < 0 {
             cell.row1.layer.backgroundColor = UIColor.green.cgColor
             cell.row1.textColor = UIColor.black
-        } else if round.estDelay < 901 {
+        } else if totalDelay(for: round) < 901 {
             cell.row1.layer.backgroundColor = UIColor.yellow.cgColor
             cell.row1.textColor = UIColor.black
         } else {

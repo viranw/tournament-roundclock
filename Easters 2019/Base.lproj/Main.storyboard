@@ -333,6 +333,7 @@
                         <outlet property="new" destination="eG6-tx-5Ei" id="8pZ-V3-XNf"/>
                         <outlet property="offsetcheckin" destination="TpK-F7-Rv2" id="ICN-jG-xKF"/>
                         <outlet property="sched" destination="WYL-ec-qya" id="leq-T4-9hA"/>
+                        <outlet property="shiftRounds" destination="GgM-5Z-Cw2" id="DoE-YQ-PdY"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vp1-cA-XLj" userLabel="First Responder" sceneMemberID="firstResponder"/>
