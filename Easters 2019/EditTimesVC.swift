@@ -15,11 +15,10 @@ class EditTimesVC: UITableViewController {
     var currentStart:DateComponents!
     var newStart:DateComponents!
     var diff : TimeInterval = 0
+    
+    @IBOutlet weak var sched: UILabel!
     @IBOutlet weak var offsetcheckin: UISwitch!
-    
     @IBOutlet weak var dp: UIDatePicker!
-    
-
     @IBOutlet weak var current: UILabel!
     @IBOutlet weak var new: UILabel!
     @IBOutlet weak var delay: UILabel!
@@ -44,6 +43,9 @@ class EditTimesVC: UITableViewController {
         diff = allRounds[index].estDelay
         delay.text = "\(String(Int(diff/60))) minutes"
         
+        let schedStart2 = cal.date(from: allRounds[index].schedStart)
+        sched.text = DateFormatter.localizedString(from: schedStart2!, dateStyle: .none, timeStyle: .short)
+        
         
         
 
@@ -60,7 +62,7 @@ class EditTimesVC: UITableViewController {
     @IBAction func dpShowDateAction(_ sender: Any) {
         new.text = DateFormatter.localizedString(from: dp.date, dateStyle: .none, timeStyle: .short)
         
-        diff = dp.date.timeIntervalSince(cal.date(from: allRounds[index].estStart)!)
+        diff = dp.date.timeIntervalSince(cal.date(from: allRounds[index].schedStart)!)
         delay.text = "\(String(Int(diff/60))) minutes"
         
         
