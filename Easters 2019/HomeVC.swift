@@ -61,50 +61,44 @@ class HomeVC: UITableViewController {
         
         // Scheduled Label
         let sched = DateFormatter.localizedString(from: round.schedStart, dateStyle: .none, timeStyle: .short)
-        
         cell.sched?.text = "Scheduled \(sched)"
         
-        
-        // Left sched/act delay labels - Text and formatting
-        let sdelay = round.estStart.timeIntervalSince(round.schedStart)
-        if sdelay > 0 {
-            cell.scheddelay?.text =  "Estimated +\(String(Int(sdelay/60)))m"
-        } else {
-            cell.scheddelay?.text = "Estimated \(String(Int(sdelay/60)))m"
-        }
-        
-        if sdelay == 0 {
-           cell.scheddelay?.textColor = UIColor.blue
-        } else if sdelay < 0 {
-            cell.scheddelay?.textColor = UIColor.green
-        } else if sdelay < 901 {
-            cell.scheddelay?.textColor = UIColor.orange
-        } else {
-            cell.scheddelay?.textColor = UIColor.red
-        }
-        
-        if round.status == "past" {
+        // Left sched/act delay - Text and formatting
+        if round.isComplete {
             let adelay = round.actStart!.timeIntervalSince(round.schedStart)
-            cell.scheddelay?.textColor = UIColor.lightGray
+            cell.delayleft?.textColor = UIColor.lightGray
             
             if adelay > 0 {
-                cell.actdelay?.text = "Actual +\(String(Int(adelay/60)))m"
+                cell.delayleft?.text = "Actual +\(String(Int(adelay/60)))m"
             } else {
-                cell.actdelay?.text = "Actual \(String(Int(adelay/60)))m"
+                cell.delayleft?.text = "Actual \(String(Int(adelay/60)))m"
             }
             
             if adelay == 0 {
-                cell.actdelay?.textColor = UIColor.blue
+                cell.delayleft?.textColor = UIColor.blue
             } else if adelay < 0 {
-                cell.actdelay?.textColor = UIColor.green
+                cell.delayleft?.textColor = UIColor.green
             } else if adelay < 901 {
-                cell.actdelay?.textColor = UIColor.orange
+                cell.delayleft?.textColor = UIColor.orange
             } else {
-                cell.actdelay?.textColor = UIColor.red
+                cell.delayleft?.textColor = UIColor.red
             }
-            
         } else {
-            cell.actdelay?.text = ""
+            let sdelay = round.estStart.timeIntervalSince(round.schedStart)
+            if sdelay > 0 {
+                cell.delayleft?.text =  "Estimated +\(String(Int(sdelay/60)))m"
+            } else {
+                cell.delayleft?.text = "Estimated \(String(Int(sdelay/60)))m"
+            }
+            if sdelay == 0 {
+                cell.delayleft?.textColor = UIColor.blue
+            } else if sdelay < 0 {
+                cell.delayleft?.textColor = UIColor.green
+            } else if sdelay < 901 {
+                cell.delayleft?.textColor = UIColor.orange
+            } else {
+                cell.delayleft?.textColor = UIColor.red
+            }
         }
         
         
@@ -116,13 +110,21 @@ class HomeVC: UITableViewController {
             row?.clipsToBounds = true
         }
         
-        // Grey out labels if the round is past, otherwise colour based on delay
-        if round.status == "past" {
-            for row in [cell.row1, cell.row2, cell.row3] {
-                row!.layer.backgroundColor = UIColor.lightGray.cgColor
-                row!.textColor = UIColor.white
-            }
+        // If the round is past, display the release time on the grey label and hide the rest
+        // If not, populate and format accordingly
+        if round.isComplete {
+            let act = DateFormatter.localizedString(from: round.actStart!, dateStyle: .none, timeStyle: .short)
+            cell.row1.text = "Released \(act)"
+            cell.row1.layer.backgroundColor = UIColor.lightGray.cgColor
+            cell.row1.textColor = UIColor.white
+            
+            cell.row2.isHidden = true
+            cell.row3.isHidden = true
+            
         } else {
+            cell.row2.isHidden = false
+            cell.row3.isHidden = false
+            
             if totalDelay(for: round) == 0 {
                 cell.row1.layer.backgroundColor = UIColor.yellow.cgColor
                 cell.row1.textColor = UIColor.black
@@ -137,25 +139,80 @@ class HomeVC: UITableViewController {
                 cell.row1.textColor = UIColor.white
                 
             }
+            
+            let est = DateFormatter.localizedString(from: round.estStart, dateStyle: .none, timeStyle: .short)
+            let cic = DateFormatter.localizedString(from: round.checkincloses, dateStyle: .none, timeStyle: .short)
+            let sns = DateFormatter.localizedString(from: round.snsStart, dateStyle: .none, timeStyle: .short)
+            
+            cell.row1?.text = "Estimated \(est)"
+            cell.row2?.text = "CIC \(cic)"
+            cell.row3?.text = "SNS \(sns)"
         }
-        
-        let est = DateFormatter.localizedString(from: round.estStart, dateStyle: .none, timeStyle: .short)
-        let cic = DateFormatter.localizedString(from: round.checkincloses, dateStyle: .none, timeStyle: .short)
-        let sns = DateFormatter.localizedString(from: round.snsStart, dateStyle: .none, timeStyle: .short)
-        
-        cell.row1?.text = "Estimated \(est)"
-        cell.row2?.text = "CIC \(cic)"
-        cell.row3?.text = "SNS \(sns)"
-    
+
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if allRounds[indexPath.row].isComplete {
+            return 100
+        } else {
+            return 185
+        }
+    }
+    
+    func completeRound(index: Int) {
+        allRounds[index].isComplete = !allRounds[index].isComplete
+        allRounds[index].actStart = Date()
+        writeRounds()
+    }
+    
+    func uncompleteRound(index: Int) {
+        allRounds[index].isComplete = !allRounds[index].isComplete
+        allRounds[index].actStart = nil
+        writeRounds()
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let complete = UITableViewRowAction(style: .default, title: "Complete") {(action, indexPath) in
+            if allRounds[indexPath.row].isComplete {
+                let ac = UIAlertController(title: "Invalid Completion", message: "\(allRounds[indexPath.row].label_long!) is already complete.", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(ac, animated: true)
+            } else {
+                self.completeRound(index: indexPath.row)
+            }
+            
+            self.tableView.reloadData()
+        }
+        
+        let uncomplete = UITableViewRowAction(style: .default, title: "Uncomplete") {(action, indexPath) in
+            if !allRounds[indexPath.row].isComplete {
+                let ac = UIAlertController(title: "Invalid Uncompletion", message: "\(allRounds[indexPath.row].label_long!) is not complete.", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(ac, animated: true)
+            } else {
+                self.uncompleteRound(index: indexPath.row)
+            }
+            self.tableView.reloadData()
+        }
+        
+        if allRounds[indexPath.row].isComplete {
+            complete.backgroundColor = UIColor.gray
+            uncomplete.backgroundColor = UIColor.orange
+        } else {
+            complete.backgroundColor = UIColor.green
+            uncomplete.backgroundColor = UIColor.gray
+        }
+        
+        return [complete, uncomplete]
+    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // Check if the status is past, disallow editing if so
-        if allRounds[indexPath.row].status == "past" {
-            tableView.deselectRow(at: indexPath, animated: true)
+        if allRounds[indexPath.row].isComplete {
+            tableView.deselectRow(at: indexPath, animated: false)
+            tableView.reloadData()
         } else {
             //1: Try loading the detailVC
             if let vc = storyboard?.instantiateViewController(withIdentifier: "EditTimes") as? EditTimesVC {
@@ -168,6 +225,8 @@ class HomeVC: UITableViewController {
                 navigationController?.pushViewController(vc, animated: true)
             }
         }
+        
+        
     }
     
     

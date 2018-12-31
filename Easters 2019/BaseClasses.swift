@@ -28,7 +28,7 @@ class round: NSObject, Codable {
     var seq:Int!
     var label_long:String!
     var label_short:String!
-    var status:String
+    var isComplete:Bool
     var schedStart:Date
     var estStart:Date
     var actStart:Date?
@@ -40,11 +40,11 @@ class round: NSObject, Codable {
     
     
     
-    init(seq:Int, label_long:String, label_short:String,status:String, day:Int, schedStart:Date) {
+    init(seq:Int, label_long:String, label_short:String,isComplete:Bool, day:Int, schedStart:Date) {
         self.seq = seq
         self.label_long = label_long
         self.label_short = label_short
-        self.status = status
+        self.isComplete = isComplete
         self.day = day
         self.schedStart = schedStart
         self.estStart = schedStart
