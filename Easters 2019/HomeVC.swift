@@ -37,7 +37,7 @@ class HomeVC: UITableViewController, UITabBarControllerDelegate {
         title = "Rounds"
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Register", style: .plain, target: self, action: #selector(registerLocal))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Schedule", style: .plain, target: self, action: #selector(scheduleLocal))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(reset1))
         
     }
     
@@ -153,6 +153,21 @@ class HomeVC: UITableViewController, UITabBarControllerDelegate {
         
     }
     
+    @objc func reset1() {
+        let ac = UIAlertController(title: "Reset", message: "Are you sure you want to reset timings of all rounds to the schedule?", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: "Confirm", style: .default) { (unowned) in
+            initialBuild()
+            writeRounds()
+            self.tableView.reloadData()
+        })
+        
+        self.present(ac, animated: true)
+    }
+    
+    func reset2() {
+        
+    }
     
     
     @objc func scheduleLocal() {
