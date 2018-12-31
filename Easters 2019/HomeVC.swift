@@ -120,6 +120,21 @@ class HomeVC: UITableViewController, UITabBarControllerDelegate {
         cell.row2.clipsToBounds = true
         cell.row3.clipsToBounds = true
         
+        if round.estDelay == 0 {
+            cell.row1.layer.backgroundColor = UIColor.yellow.cgColor
+            cell.row1.textColor = UIColor.black
+        } else if round.estDelay < 0 {
+            cell.row1.layer.backgroundColor = UIColor.green.cgColor
+            cell.row1.textColor = UIColor.black
+        } else if round.estDelay < 901 {
+            cell.row1.layer.backgroundColor = UIColor.yellow.cgColor
+            cell.row1.textColor = UIColor.black
+        } else {
+            cell.row1.layer.backgroundColor = UIColor.red.cgColor
+            cell.row1.textColor = UIColor.white
+
+        }
+        
         // If the round has not started, and the tournament net delay is 0, row1 = est, row2 = cic, row3 = "No Delay"
         // If the round has not started, row1 = est, row2 = cic, row3 = schedule-neutral start time (ie. start time if no more time is to be lost)
         
@@ -135,11 +150,7 @@ class HomeVC: UITableViewController, UITabBarControllerDelegate {
         cell.row2?.text = "CIC \(cic)"
         cell.row3?.text = "SNS \(sns)"
         
-        cell.row1.backgroundColor = UIColor.yellow
-        cell.row2.backgroundColor = UIColor.cyan
-        cell.row3.backgroundColor = UIColor.lightGray
-        
-        cell.row3.textColor = UIColor.white
+    
         
         for row in [cell.row1, cell.row2, cell.row3] {
             row?.layer.cornerRadius = 10.0

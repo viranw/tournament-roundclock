@@ -42,6 +42,15 @@ class EditTimesVC: UITableViewController {
         delay.text = "\(String(Int(diff/60))) minutes"
         sched.text = DateFormatter.localizedString(from: allRounds[index].schedStart, dateStyle: .none, timeStyle: .short)
         
+        if diff == 0 {
+            delay.textColor = UIColor.blue
+        } else if diff < 0 {
+            delay.textColor = UIColor.green
+        } else if diff < 901 {
+            delay.textColor = UIColor.orange
+        } else {
+            delay.textColor = UIColor.red
+        }
         
         
         
@@ -64,6 +73,16 @@ class EditTimesVC: UITableViewController {
         diff = dp.date.timeIntervalSince(allRounds[index].schedStart)
         
         delay.text = "\(String(Int(diff/60))) minutes"
+        
+        if diff == 0 {
+            delay.textColor = UIColor.blue
+        } else if diff < 0 {
+            delay.textColor = UIColor.green
+        } else if diff < 901 {
+            delay.textColor = UIColor.orange
+        } else {
+            delay.textColor = UIColor.red
+        }
     }
     
     @objc func saveNewTime() {
@@ -73,7 +92,7 @@ class EditTimesVC: UITableViewController {
         
         // Offset check-in if required
         if offsetcheckin.isOn {
-            allRounds[index].checkincloses = allRounds[index].checkincloses.addingTimeInterval(diff)
+            allRounds[index].checkincloses = allRounds[index].estStart.addingTimeInterval(-1200)
         }
         
         // Update the estDelay
