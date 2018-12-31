@@ -17,7 +17,6 @@
 		8002A10E21C762C7006E3597 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002A10D21C762C7006E3597 /* HomeCell.swift */; };
 		8055F0B721D92559003E2C29 /* EditTimesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055F0B621D92559003E2C29 /* EditTimesVC.swift */; };
 		806EF5D321CB5FB00053653F /* tournamentBuild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806EF5D221CB5FB00053653F /* tournamentBuild.swift */; };
-		806EF5D521CB603D0053653F /* notifCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806EF5D421CB603D0053653F /* notifCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +32,6 @@
 		8002A10D21C762C7006E3597 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		8055F0B621D92559003E2C29 /* EditTimesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimesVC.swift; sourceTree = "<group>"; };
 		806EF5D221CB5FB00053653F /* tournamentBuild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tournamentBuild.swift; sourceTree = "<group>"; };
-		806EF5D421CB603D0053653F /* notifCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notifCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +71,6 @@
 				8002A0FA21C76069006E3597 /* Main.storyboard */,
 				8055F0B621D92559003E2C29 /* EditTimesVC.swift */,
 				8002A10D21C762C7006E3597 /* HomeCell.swift */,
-				806EF5D421CB603D0053653F /* notifCell.swift */,
 				8002A10021C7606E006E3597 /* Assets.xcassets */,
 				8002A10221C7606E006E3597 /* LaunchScreen.storyboard */,
 				8002A10521C7606E006E3597 /* Info.plist */,
@@ -156,7 +153,6 @@
 				8002A0F921C76069006E3597 /* HomeVC.swift in Sources */,
 				8002A10C21C76098006E3597 /* BaseClasses.swift in Sources */,
 				8055F0B721D92559003E2C29 /* EditTimesVC.swift in Sources */,
-				806EF5D521CB603D0053653F /* notifCell.swift in Sources */,
 				8002A0F721C76069006E3597 /* AppDelegate.swift in Sources */,
 				806EF5D321CB5FB00053653F /* tournamentBuild.swift in Sources */,
 				8002A0FF21C76069006E3597 /* Easters_2019.xcdatamodeld in Sources */,

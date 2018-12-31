@@ -36,14 +36,16 @@ class round: NSObject, Codable {
     var snsStart:Date
     var estDelay:TimeInterval = 0
     var shiftDelay:TimeInterval = 0
+    var day:Int
     
     
     
-    init(seq:Int, label_long:String, label_short:String,status:String,schedStart:Date) {
+    init(seq:Int, label_long:String, label_short:String,status:String, day:Int, schedStart:Date) {
         self.seq = seq
         self.label_long = label_long
         self.label_short = label_short
         self.status = status
+        self.day = day
         self.schedStart = schedStart
         self.estStart = schedStart
         self.snsStart = schedStart

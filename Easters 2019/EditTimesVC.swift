@@ -98,14 +98,20 @@ class EditTimesVC: UITableViewController {
         }
         
         if shiftRounds.isOn {
+            let sourceRound = allRounds[index]
             for i in (index+1...allRounds.count-1) {
-                allRounds[i].shiftDelay += diff
-                print(allRounds[i].shiftDelay)
-                //Shift schedule back by x minutes
-                allRounds[i].estStart = allRounds[i].schedStart.addingTimeInterval(allRounds[i].shiftDelay)
-                //Add any other independent delay factors already programmed in
-                allRounds[i].estStart = allRounds[i].estStart.addingTimeInterval(allRounds[i].estDelay)
-                allRounds[i].checkincloses = allRounds[i].estStart.addingTimeInterval(-1200)
+                let round = allRounds[i]
+                
+                // Only shift schedule for the rest of the day, otherwise it makes no sense
+                if round.day == sourceRound.day {
+                    round.shiftDelay += diff
+
+                    //Shift schedule back by x minutes
+                    round.estStart = round.schedStart.addingTimeInterval(round.shiftDelay)
+                    //Add any other independent delay factors already programmed in
+                    round.estStart = round.estStart.addingTimeInterval(round.estDelay)
+                    round.checkincloses = round.estStart.addingTimeInterval(-1200)
+                }
             }
         }
         
