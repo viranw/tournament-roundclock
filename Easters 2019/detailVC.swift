@@ -48,7 +48,7 @@ class detailVC: UIViewController {
         releaseLabel.text = "Scheduled Release at \(schedRls)"
         estLabel.text = "Estimated Release at \(estRls)"
         
-        updateProgressBar(bar: progressBar, forRoundIndex: indexPath.row)
+        updateProgressBar(bar: progressBar, forRoundIndex: roundIndex)
         
 
         
@@ -78,6 +78,11 @@ class detailVC: UIViewController {
             startRoundButton.isUserInteractionEnabled = true
             unstartRoundButton.isUserInteractionEnabled = false
         }
+        
+        if allRounds[i].roundCompleted != nil {
+            unstartRoundButton.isUserInteractionEnabled = false
+            unstartRoundButton.backgroundColor = UIColor.lightGray
+        }
     }
     
     @IBAction func start() {
@@ -87,6 +92,7 @@ class detailVC: UIViewController {
         configureStartButtons(i: roundIndex)
         fillInTimes(i: roundIndex)
         writeRounds()
+        updateProgressBar(bar: progressBar, forRoundIndex: roundIndex)
     }
     
     @IBAction func unstart() {
@@ -94,6 +100,7 @@ class detailVC: UIViewController {
         configureStartButtons(i: roundIndex)
         fillInTimes(i: roundIndex)
         writeRounds()
+        updateProgressBar(bar: progressBar, forRoundIndex: roundIndex)
     }
     
     func fillInTimes(i: Int) {
@@ -183,6 +190,7 @@ class detailVC: UIViewController {
         }
         fillInTimes(i: roundIndex)
         writeRounds()
+        updateProgressBar(bar: progressBar, forRoundIndex: roundIndex)
     }
     
     @IBAction func drawReleaseSelected() {
@@ -193,6 +201,7 @@ class detailVC: UIViewController {
         }
         fillInTimes(i: roundIndex)
         writeRounds()
+        updateProgressBar(bar: progressBar, forRoundIndex: roundIndex)
     }
     
     @IBAction func firstBallotSelected() {
@@ -203,6 +212,7 @@ class detailVC: UIViewController {
         }
         fillInTimes(i: roundIndex)
         writeRounds()
+        updateProgressBar(bar: progressBar, forRoundIndex: roundIndex)
     }
     
     @IBAction func roundCompletedSelected() {
@@ -213,6 +223,8 @@ class detailVC: UIViewController {
         }
         fillInTimes(i: roundIndex)
         writeRounds()
+        configureStartButtons(i: roundIndex)
+        updateProgressBar(bar: progressBar, forRoundIndex: roundIndex)
     }
 
     @objc func reschedule() {

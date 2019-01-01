@@ -91,6 +91,7 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
             } else {
                 cell.delayleft?.text = "Actual \(String(Int(adelay/60)))m"
             }
+            cell.delayleft?.textColor = UIColor.purple
 
         } else {
             let sdelay = calculateRawDelay(for: round)
@@ -174,6 +175,20 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
                 cell.row1.textColor = UIColor.white
             }
             
+           // If est start is past SNS (ie. we're accruing more delay), orange
+            if round.snsStart.timeIntervalSince(round.estStart) < 0 {
+                cell.row3.layer.backgroundColor = UIColor.orange.cgColor
+                cell.row3.textColor = UIColor.black
+            // If SNS is past sched. start (ie. we're running behind), purple)
+            } else if round.snsStart.timeIntervalSince(round.schedStart) > 0 {
+                cell.row3.layer.backgroundColor = UIColor.purple.cgColor
+                cell.row3.textColor = UIColor.white
+            } else {
+            // If it's neither of the above then there's no need for concern, it can just sit
+                cell.row3.layer.backgroundColor = UIColor.lightGray.cgColor
+                cell.row3.textColor = UIColor.white
+            }
+            
             // Row 2 can just be always black
             cell.row2.layer.backgroundColor = UIColor.black.cgColor
             cell.row2.textColor = UIColor.white
@@ -250,17 +265,19 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
             }
         }
         
-        if allRounds[indexPath.row].isStarted {
-            start.backgroundColor = UIColor.lightGray
+        if allRounds[indexPath.row].roundCompleted != nil {
+            reschedule.backgroundColor = UIColor.lightGray
+            return [reschedule]
+        } else if allRounds[indexPath.row].isStarted {
             unstart.backgroundColor = UIColor.orange
             reschedule.backgroundColor = UIColor.lightGray
+            return [unstart, reschedule]
         } else {
             start.backgroundColor = UIColor.green
             unstart.backgroundColor = UIColor.gray
             reschedule.backgroundColor = UIColor.purple
+            return [start, reschedule]
         }
-        
-        return [start, unstart, reschedule]
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

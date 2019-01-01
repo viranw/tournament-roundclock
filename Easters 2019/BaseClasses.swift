@@ -231,7 +231,7 @@ func updateProgressBar(bar:UIProgressView, forRoundIndex: Int) {
     bar.progress = progress
     
     if bar.progress < 0.5 {
-        bar.tintColor = UIColor.re
+        bar.tintColor = UIColor.red
     } else if bar.progress > 0.5 && bar.progress < 1 {
         bar.tintColor = UIColor.blue
     } else if bar.progress == 1 {
