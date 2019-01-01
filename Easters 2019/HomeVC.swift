@@ -31,7 +31,7 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
         
         
         //TODO: Set left item to open the tab site
-        //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Tab", style: .plain, target: self, action: #selector(openLink))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Tab", style: .plain, target: self, action: #selector(openTab))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(reset1))
         
         
@@ -266,7 +266,8 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
     }
     
     @objc func openTab() {
-        // Link to the tab website
+        guard let url = URL(string: tabSite) else { return }
+        UIApplication.shared.open(url)
     }
     
     

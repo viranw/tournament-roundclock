@@ -22,9 +22,7 @@ var notificationsForRound:[String:notificationObject] = [:]
 
 var cal = Calendar(identifier: .gregorian)
 
-//Check-in lead is negative because the time interval is added
-let checkinLead:TimeInterval = -1200.0
-let prepTime:TimeInterval = 1800.0
+
 
 
 
@@ -205,7 +203,7 @@ func timeCall(vc: UIViewController, roundIndex: Int) {
             let timeNow = DateFormatter.localizedString(from: round.actStart!, dateStyle: .none, timeStyle: .short)
             let debatesStart = DateFormatter.localizedString(from: round.debatesStart!, dateStyle: .none, timeStyle: .short)
             
-            let ac = UIAlertController(title: "Time Call", message: "The time now is \(timeNow). Debates will start at \(debatesStart)", preferredStyle: .alert)
+            let ac = UIAlertController(title: "Time Call", message: "The time now is \(timeNow). Debates will start at \(debatesStart).", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             vc.present(ac, animated: true)
         } else {
