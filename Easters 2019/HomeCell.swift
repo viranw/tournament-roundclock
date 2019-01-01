@@ -13,6 +13,7 @@ class HomeCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var sched: UILabel!
     @IBOutlet weak var delayleft: UILabel!
+    @IBOutlet weak var snsLeft: UILabel!
     @IBOutlet weak var row1: UILabel!
     @IBOutlet weak var row2: UILabel!
     @IBOutlet weak var row3: UILabel!

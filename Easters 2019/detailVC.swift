@@ -129,7 +129,7 @@ class detailVC: UIViewController {
         
         if round.isStarted {
            // Prep is 30 minutes
-            let ds = round.actStart!.addingTimeInterval(1800)
+            let ds = round.actStart!.addingTimeInterval(prepTime)
             round.debatesStart = ds
             debatesStartButton.setTitle(DateFormatter.localizedString(from: ds, dateStyle: .none, timeStyle: .short), for: .normal)
             debatesStartButton.backgroundColor = UIColor.black

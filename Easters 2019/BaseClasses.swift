@@ -21,6 +21,11 @@ var notificationsForRound:[String:notificationObject] = [:]
 
 var cal = Calendar(identifier: .gregorian)
 
+//Check-in lead is negative because the time interval is added
+let checkinLead:TimeInterval = -1200.0
+let prepTime:TimeInterval = 1800.0
+
+
 
 
 class round: NSObject, Codable {
@@ -34,9 +39,11 @@ class round: NSObject, Codable {
     var actStart:Date?
     var checkincloses:Date
     var snsStart:Date
-    var estDelay:TimeInterval = 0
-    var shiftDelay:TimeInterval = 0
     var day:Int
+    var uniqueDelay:TimeInterval
+    //Unique delay = Delay caused directly by rescheduling that round, not by knock-on - Only modified if you manually edit a round's start time
+    //TODO: Automatically calculate when you start a round, reset if unstarted
+    //Reset when unstarted: Unique = Sched v Est less knock on from the last round
     
     var adjAllocCompleted:Date?
     var drawReleased:Date?
@@ -53,12 +60,87 @@ class round: NSObject, Codable {
         self.schedStart = schedStart
         self.estStart = schedStart
         self.snsStart = schedStart
+        self.uniqueDelay = 0.0
         
-        self.checkincloses = schedStart.addingTimeInterval(-1200)
+        self.checkincloses = schedStart.addingTimeInterval(checkinLead)
         
     }
     
 
+}
+
+// Calculate deviation from the schedule for the current round
+func calculateRawDelay(for round: round) -> TimeInterval {
+    if round.isStarted {
+        // Round has started, the delay is sched vs act
+        return round.actStart!.timeIntervalSince(round.schedStart)
+    } else {
+        // Round has not started, the delay is sched vs est
+        return round.estStart.timeIntervalSince(round.schedStart)
+    }
+}
+
+func calculateUniqueDelay(forRoundIndex i: Int) -> TimeInterval {
+    //Unique = Total minus knockon
+    let total = calculateRawDelay(for: allRounds[i])
+    print("Raw Delay: \(total)")
+    var knockon:TimeInterval = 0.0
+    
+    if i != 0 && allRounds[i].day == allRounds[i-1].day {
+        // Not round 1, not the first round of the day - There's knockon
+        knockon = calculateRawDelay(for: allRounds[i-1])
+        print("Knockon: \(total)")
+        let unique = total - knockon
+        print(calculateRawDelay(for: allRounds[i]) - calculateRawDelay(for: allRounds[i-1]))
+        return unique
+    } else {
+        // Either round 1 or the first round of the day - Delay is entirely unique
+        return total
+    }
+}
+
+func estimateFutureStartsAfterEdit(forRoundIndex index:Int) {
+    for i in (index+1...allRounds.count-1) {
+        if !allRounds[i].isStarted {
+            // Round has not started, we should calculate a new delay
+            
+            if i != 0 && allRounds[i].day == allRounds[i-1].day {
+                allRounds[i].estStart = allRounds[i].schedStart + calculateRawDelay(for: allRounds[i-1]) + allRounds[i].uniqueDelay
+            } else {
+                allRounds[i].estStart = allRounds[i].schedStart + allRounds[i].uniqueDelay
+            }
+            
+            allRounds[i].snsStart = calculateSNS(forRoundIndex: i)
+        }
+    }
+}
+
+func calculateKnockOn(forRoundIndex i: Int) -> TimeInterval {
+    return calculateRawDelay(for: allRounds[i]) - calculateUniqueDelay(forRoundIndex: i)
+}
+
+// Calculate delay, taking into account the knock-on effect from the past round
+func calculateDelayWithKnockOn(forRoundIndex i:Int) -> Date {
+    if i == 0 {
+        // Round 1, no knockon
+        // Sched vs Est only
+        return allRounds[i].schedStart.addingTimeInterval(calculateRawDelay(for: allRounds[i]))
+    } else {
+        if allRounds[i].day == allRounds[i-1].day {
+            print("---")
+            print("Before: \(allRounds[i].schedStart)")
+            // Past round occurred on the same day, add the delay from that round to the estimated unique delay from this round
+            print("Round \(i+1) occurs on the same day as Round \(i)")
+            print("\(calculateRawDelay(for: allRounds[i-1]))")
+            let intermediate = allRounds[i].schedStart.addingTimeInterval(calculateRawDelay(for: allRounds[i-1]))
+            print("Intermediate: \(intermediate)")
+            print("RoundDelay: \(calculateUniqueDelay(forRoundIndex: i))")
+            print("After: \(intermediate.addingTimeInterval(calculateUniqueDelay(forRoundIndex: i)))")
+            return intermediate.addingTimeInterval(calculateUniqueDelay(forRoundIndex: i))
+        } else {
+            return allRounds[i].schedStart.addingTimeInterval(calculateRawDelay(for: allRounds[i]))
+        }
+    }
 }
 
 func writeRounds() {
@@ -71,18 +153,22 @@ func writeRounds() {
     }
 }
 
-func totalDelay(for round: round) -> TimeInterval {
-    var d = 0.0
-    d += round.estDelay
-    d += round.shiftDelay
-    
-    return d
+func calculateSNS(forRoundIndex i: Int) -> Date {
+    // SNS = Normal delay calculation, but only
+    if i == 0 {
+        // It's round 1, the array lookup will fail
+        return allRounds[i].schedStart
+    } else {
+        if allRounds[i].day == allRounds[i-1].day {
+            // The previous round is on the same day, return their delay
+            return allRounds[i].schedStart.addingTimeInterval(calculateRawDelay(for: allRounds[i-1]))
+        } else {
+            return allRounds[i].schedStart
+        }
+    }
 }
 
-func calculateSNS(for round: round) {
-    let sns = round.schedStart.addingTimeInterval(round.shiftDelay)
-    round.snsStart = sns
-}
+// Estimated Delay for a round = Sched vs Act/Est from the last round + sched vs est from the current round
 
 
 

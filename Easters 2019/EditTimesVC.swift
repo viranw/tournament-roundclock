@@ -22,7 +22,6 @@ class EditTimesVC: UITableViewController {
     @IBOutlet weak var current: UILabel!
     @IBOutlet weak var new: UILabel!
     @IBOutlet weak var delay: UILabel!
-    @IBOutlet weak var shiftRounds: UISwitch!
     
     
     override func viewDidLoad() {
@@ -39,7 +38,9 @@ class EditTimesVC: UITableViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveNewTime))
         
-        diff = allRounds[index].estDelay
+        
+        
+        //diff = allRounds[index].estDelay
         delay.text = "\(String(Int(diff/60))) minutes"
         sched.text = DateFormatter.localizedString(from: allRounds[index].schedStart, dateStyle: .none, timeStyle: .short)
         
@@ -86,49 +87,40 @@ class EditTimesVC: UITableViewController {
         }
     }
     
+    
+    //Rewrite
     @objc func saveNewTime() {
         
         // Update the round variable estStart
         allRounds[index].estStart = dp.date
         
+        //Update unique delay
+        allRounds[index].uniqueDelay = calculateUniqueDelay(forRoundIndex: index)
+        
         
         // Offset check-in if required
         if offsetcheckin.isOn {
-            allRounds[index].checkincloses = allRounds[index].estStart.addingTimeInterval(-1200)
+            allRounds[index].checkincloses = allRounds[index].estStart.addingTimeInterval(checkinLead)
         }
         
-        if shiftRounds.isOn {
-            let sourceRound = allRounds[index]
-            for i in (index+1...allRounds.count-1) {
-                let round = allRounds[i]
-                
-                // Only shift schedule for the rest of the day, otherwise it makes no sense
-                if round.day == sourceRound.day {
-                    round.shiftDelay += diff
-                    
-
-                    //Shift schedule back by x minutes
-                    round.estStart = round.schedStart.addingTimeInterval(round.shiftDelay)
-                    
-                    //Add any other independent delay factors already programmed in
-                    round.estStart = round.estStart.addingTimeInterval(round.estDelay)
-                    round.checkincloses = round.estStart.addingTimeInterval(-1200)
-                    
-                    //Update SNS
-                    calculateSNS(for: round)
-                }
-            }
-        }
+        // Calculate new estimated start times for rounds that have not started yet
+        estimateFutureStartsAfterEdit(forRoundIndex: index)
         
-        allRounds[index].estDelay = diff
-    
-    
         // Save array
         writeRounds()
         
         // Load up the navController
         navigationController?.popToRootViewController(animated: true)
         
+    }
+    @IBAction func syncCheckIn(_ sender: Any) {
+        // Reset check-in to normal first, then re-add the total delay on
+        allRounds[index].checkincloses = allRounds[index].schedStart.addingTimeInterval(checkinLead)
         
+        allRounds[index].checkincloses = calculateDelayWithKnockOn(forRoundIndex: index).addingTimeInterval(checkinLead)
+        
+        writeRounds()
+        
+        navigationController?.popToRootViewController(animated: true)
     }
 }

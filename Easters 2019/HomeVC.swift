@@ -70,10 +70,10 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
         
         // Left sched/act delay - Text and formatting
         if round.isStarted {
-            let adelay = round.actStart!.timeIntervalSince(round.schedStart)
+            let adelay = calculateRawDelay(for: round)
             cell.delayleft?.textColor = UIColor.lightGray
             
-            if adelay > 0 {
+            if adelay >= 0 {
                 cell.delayleft?.text = "Actual +\(String(Int(adelay/60)))m"
             } else {
                 cell.delayleft?.text = "Actual \(String(Int(adelay/60)))m"
@@ -89,8 +89,8 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
                 cell.delayleft?.textColor = UIColor.red
             }
         } else {
-            let sdelay = round.estStart.timeIntervalSince(round.schedStart)
-            if sdelay > 0 {
+            let sdelay = calculateRawDelay(for: round)
+            if sdelay >= 0 {
                 cell.delayleft?.text =  "Estimated +\(String(Int(sdelay/60)))m"
             } else {
                 cell.delayleft?.text = "Estimated \(String(Int(sdelay/60)))m"
@@ -103,6 +103,31 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
                 cell.delayleft?.textColor = UIColor.orange
             } else {
                 cell.delayleft?.textColor = UIColor.red
+            }
+        }
+        
+        // Left SNS
+        if round.isStarted {
+            cell.snsLeft.isHidden = true
+        } else {
+            cell.snsLeft.isHidden = false
+            
+            let snsgap = round.estStart.timeIntervalSince(round.snsStart)
+            
+            if snsgap >= 0 {
+                cell.snsLeft.text = "SNS +\(String(Int(snsgap/60)))m"
+            } else {
+                cell.snsLeft.text = "SNS -\(String(Int(snsgap/60)))m"
+            }
+            
+            if snsgap == 0 {
+                cell.snsLeft.textColor = UIColor.blue
+            } else if snsgap < 0 {
+                cell.snsLeft.textColor = UIColor.green
+            } else if snsgap < 901 {
+                cell.snsLeft.textColor = UIColor.orange
+            } else {
+                cell.snsLeft.textColor = UIColor.red
             }
         }
         
@@ -130,20 +155,27 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
             cell.row2.isHidden = false
             cell.row3.isHidden = false
             
-            if totalDelay(for: round) == 0 {
+            // Determine the label colour of estimated start based on delay
+            if calculateRawDelay(for: round) == 0 {
                 cell.row1.layer.backgroundColor = UIColor.yellow.cgColor
                 cell.row1.textColor = UIColor.black
-            } else if totalDelay(for: round) < 0 {
+            } else if calculateRawDelay(for: round) < 0 {
                 cell.row1.layer.backgroundColor = UIColor.green.cgColor
                 cell.row1.textColor = UIColor.black
-            } else if totalDelay(for: round) < 901 {
+            } else if calculateRawDelay(for: round) < 901 {
                 cell.row1.layer.backgroundColor = UIColor.yellow.cgColor
                 cell.row1.textColor = UIColor.black
             } else {
                 cell.row1.layer.backgroundColor = UIColor.red.cgColor
                 cell.row1.textColor = UIColor.white
-                
             }
+            
+            // Row 2 can just be always black
+            cell.row2.layer.backgroundColor = UIColor.black.cgColor
+            cell.row2.textColor = UIColor.white
+            
+            //TODO
+            // Determine the label colour of the SNS based on how on-track the estimated start time suggests we are to meeting it
             
             let est = DateFormatter.localizedString(from: round.estStart, dateStyle: .none, timeStyle: .short)
             let cic = DateFormatter.localizedString(from: round.checkincloses, dateStyle: .none, timeStyle: .short)
@@ -170,6 +202,7 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
         allRounds[index].actStart = Date()
         allRounds[index].firstBallot = nil
         allRounds[index].roundCompleted = nil
+        estimateFutureStartsAfterEdit(forRoundIndex: index)
         writeRounds()
     }
     
@@ -178,6 +211,7 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
         allRounds[index].actStart = nil
         allRounds[index].firstBallot = nil
         allRounds[index].roundCompleted = nil
+        estimateFutureStartsAfterEdit(forRoundIndex: index)
         writeRounds()
     }
     
