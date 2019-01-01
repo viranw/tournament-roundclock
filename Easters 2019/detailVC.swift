@@ -31,8 +31,6 @@ class detailVC: UIViewController {
         
         if let aac = allRounds[roundIndex].adjAllocCompleted {
             print(aac)
-        } else {
-            print("doesn't exist")
         }
 
         

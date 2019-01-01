@@ -9,7 +9,7 @@
 import UIKit
 import UserNotifications
 
-class HomeVC: UITableViewController {
+class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
     
     var hour:Int = 14
     var minute:Int = 45
@@ -20,13 +20,18 @@ class HomeVC: UITableViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerLocal()
+        
+        registerForPreviewing(with: self, sourceView: tableView)
         
         
         // Basic navigation setup
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Rounds"
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Register", style: .plain, target: self, action: #selector(registerLocal))
+        
+        //TODO: Set left item to open the tab site
+        //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Tab", style: .plain, target: self, action: #selector(openLink))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(reset1))
         
         
@@ -213,40 +218,38 @@ class HomeVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "detail") as? detailVC {
-            // Pass variables
-            vc.roundIndex = indexPath.row
-            
-            // Push controller
-            navigationController?.pushViewController(vc, animated: true)
+        let vc = detailViewController(for: indexPath.row)
+        navigationController?.pushViewController(vc, animated: true)
+
+    }
+    
+    // Function to return the deail view controller for a given selection (necessary for peek/pop implementation)
+    func detailViewController(for index: Int) -> detailVC {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "detail") as? detailVC else { fatalError("Couldn't load detail VC") }
+        vc.roundIndex = index
+        return vc
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        if let indexPath = tableView.indexPathForRow(at: location) {
+            previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
+            return detailViewController(for: indexPath.row)
         }
         
-        
-        
-        // Check if the status is past, disallow editing if so
-        if allRounds[indexPath.row].isStarted {
-            tableView.deselectRow(at: indexPath, animated: false)
-            tableView.reloadData()
-        } else {
-            //1: Try loading the detailVC
-            if let detailvc = storyboard?.instantiateViewController(withIdentifier: "detail") as? EditTimesVC {
-                // Pass variables
-                detailvc.currentStart = allRounds[indexPath.row].estStart
-                detailvc.round = allRounds[indexPath.row].label_long
-                detailvc.index = indexPath.row
-                
-                //3: Push controller
-                navigationController?.pushViewController(detailvc, animated: true)
-            }
-        }
-        
-        
+        return nil
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        navigationController?.pushViewController(viewControllerToCommit, animated: true)
+    }
+    
+    @objc func openTab() {
+        // Link to the tab website
     }
     
     
     
-    @objc func registerLocal() {
-        
+    func registerLocal() {
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             if granted {
