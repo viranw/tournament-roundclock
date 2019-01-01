@@ -200,12 +200,13 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
     func startRound(index: Int) {
         allRounds[index].isStarted = !allRounds[index].isStarted
         allRounds[index].actStart = Date()
+        allRounds[index].debatesStart = allRounds[index].actStart!.addingTimeInterval(prepTime)
         allRounds[index].firstBallot = nil
         allRounds[index].roundCompleted = nil
         estimateFutureStartsAfterEdit(forRoundIndex: index)
         writeRounds()
         
-        let ac = UIAlertController(title: "Time Call", message: "The time now is \(allRounds[index].actStart). Debates will start at \(allRounds[index].debatesStart!)", preferredStyle: .alert)
+        let ac = UIAlertController(title: "Time Call", message: "The time now is \(allRounds[index].actStart!). Debates will start at \(allRounds[index].debatesStart!)", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(ac, animated: true)
     }
