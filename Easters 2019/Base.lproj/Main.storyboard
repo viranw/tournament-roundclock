@@ -286,7 +286,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="rG6-rm-qoe">
-                                <rect key="frame" x="32" y="822" width="350" height="40"/>
+                                <rect key="frame" x="32" y="772" width="350" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZfF-c4-DMV">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="40"/>
@@ -326,7 +326,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="9Ky-Xx-IZw" firstAttribute="centerY" secondItem="3kt-P3-sJa" secondAttribute="centerY" id="8U0-rh-T4T"/>
-                            <constraint firstItem="RHW-5t-vz3" firstAttribute="bottom" secondItem="rG6-rm-qoe" secondAttribute="bottom" id="I0m-GT-z4q"/>
+                            <constraint firstItem="RHW-5t-vz3" firstAttribute="bottom" secondItem="rG6-rm-qoe" secondAttribute="bottom" constant="50" id="I0m-GT-z4q"/>
                             <constraint firstItem="9Ky-Xx-IZw" firstAttribute="centerX" secondItem="3kt-P3-sJa" secondAttribute="centerX" id="XVS-hZ-jES"/>
                             <constraint firstItem="rG6-rm-qoe" firstAttribute="centerX" secondItem="3kt-P3-sJa" secondAttribute="centerX" id="bGS-hF-hoQ"/>
                         </constraints>
