@@ -79,6 +79,11 @@ func totalDelay(for round: round) -> TimeInterval {
     return d
 }
 
+func calculateSNS(for round: round) {
+    let sns = round.schedStart.addingTimeInterval(round.shiftDelay)
+    round.snsStart = sns
+}
+
 
 
 

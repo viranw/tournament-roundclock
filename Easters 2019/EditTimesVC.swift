@@ -105,12 +105,17 @@ class EditTimesVC: UITableViewController {
                 // Only shift schedule for the rest of the day, otherwise it makes no sense
                 if round.day == sourceRound.day {
                     round.shiftDelay += diff
+                    
 
                     //Shift schedule back by x minutes
                     round.estStart = round.schedStart.addingTimeInterval(round.shiftDelay)
+                    
                     //Add any other independent delay factors already programmed in
                     round.estStart = round.estStart.addingTimeInterval(round.estDelay)
                     round.checkincloses = round.estStart.addingTimeInterval(-1200)
+                    
+                    //Update SNS
+                    calculateSNS(for: round)
                 }
             }
         }
