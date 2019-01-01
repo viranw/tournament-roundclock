@@ -8,6 +8,7 @@
 
 import Foundation
 import UserNotifications
+import UIKit
 
 var allRounds:[round] = []
 var upcomingRounds:[round] = []
@@ -69,6 +70,26 @@ class round: NSObject, Codable {
 
 }
 
+func startRoundSuper(index: Int) {
+    allRounds[index].isStarted = !allRounds[index].isStarted
+    allRounds[index].actStart = Date()
+    allRounds[index].debatesStart = allRounds[index].actStart!.addingTimeInterval(prepTime)
+    allRounds[index].firstBallot = nil
+    allRounds[index].roundCompleted = nil
+    estimateFutureStartsAfterEdit(forRoundIndex: index)
+    writeRounds()
+}
+
+func unstartRoundSuper(index: Int) {
+    allRounds[index].isStarted = !allRounds[index].isStarted
+    allRounds[index].actStart = nil
+    allRounds[index].firstBallot = nil
+    allRounds[index].roundCompleted = nil
+    allRounds[index].uniqueDelay = calculateUniqueDelay(forRoundIndex: index)
+    estimateFutureStartsAfterEdit(forRoundIndex: index)
+    writeRounds()
+}
+
 // Calculate deviation from the schedule for the current round
 func calculateRawDelay(for round: round) -> TimeInterval {
     if round.isStarted {
@@ -102,19 +123,23 @@ func calculateUniqueDelay(forRoundIndex i: Int) -> TimeInterval {
 }
 
 func estimateFutureStartsAfterEdit(forRoundIndex index:Int) {
-    for i in (index+1...allRounds.count-1) {
-        if !allRounds[i].isStarted {
-            // Round has not started, we should calculate a new delay
-            
-            if i != 0 && allRounds[i].day == allRounds[i-1].day {
-                allRounds[i].estStart = allRounds[i].schedStart + calculateRawDelay(for: allRounds[i-1]) + allRounds[i].uniqueDelay
-            } else {
-                allRounds[i].estStart = allRounds[i].schedStart + allRounds[i].uniqueDelay
+    if index < allRounds.count {
+        //This is the last round, there are no future rounds to estimate
+        for i in (index+1...allRounds.count-1) {
+            if !allRounds[i].isStarted {
+                // Round has not started, we should calculate a new delay
+                
+                if i != 0 && allRounds[i].day == allRounds[i-1].day {
+                    allRounds[i].estStart = allRounds[i].schedStart + calculateRawDelay(for: allRounds[i-1]) + allRounds[i].uniqueDelay
+                } else {
+                    allRounds[i].estStart = allRounds[i].schedStart + allRounds[i].uniqueDelay
+                }
+                
+                allRounds[i].snsStart = calculateSNS(forRoundIndex: i)
             }
-            
-            allRounds[i].snsStart = calculateSNS(forRoundIndex: i)
         }
     }
+    
 }
 
 func calculateKnockOn(forRoundIndex i: Int) -> TimeInterval {
@@ -168,6 +193,32 @@ func calculateSNS(forRoundIndex i: Int) -> Date {
             return allRounds[i].schedStart
         }
     }
+}
+
+func timeCall(vc: UIViewController, roundIndex: Int) {
+    
+    let round = allRounds[roundIndex]
+    
+    if round.actStart != nil {
+        if round.debatesStart != nil {
+            
+            let timeNow = DateFormatter.localizedString(from: round.actStart!, dateStyle: .none, timeStyle: .short)
+            let debatesStart = DateFormatter.localizedString(from: round.debatesStart!, dateStyle: .none, timeStyle: .short)
+            
+            let ac = UIAlertController(title: "Time Call", message: "The time now is \(timeNow). Debates will start at \(debatesStart)", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            vc.present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Error", message: "The selected round does not have a recorded round start time.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
+            vc.present(ac, animated: true)
+        }
+    } else {
+        let ac = UIAlertController(title: "Error", message: "The selected round does not have a recorded motion release time.", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
+    }
+
+    
 }
 
 // Estimated Delay for a round = Sched vs Act/Est from the last round + sched vs est from the current round

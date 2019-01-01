@@ -198,27 +198,10 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
     }
     
     func startRound(index: Int) {
-        allRounds[index].isStarted = !allRounds[index].isStarted
-        allRounds[index].actStart = Date()
-        allRounds[index].debatesStart = allRounds[index].actStart!.addingTimeInterval(prepTime)
-        allRounds[index].firstBallot = nil
-        allRounds[index].roundCompleted = nil
-        estimateFutureStartsAfterEdit(forRoundIndex: index)
-        writeRounds()
-        
-        let ac = UIAlertController(title: "Time Call", message: "The time now is \(allRounds[index].actStart!). Debates will start at \(allRounds[index].debatesStart!)", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(ac, animated: true)
+        startRoundSuper(index: index)
+        timeCall(vc: self, roundIndex: index)
     }
-    
-    func unstartRound(index: Int) {
-        allRounds[index].isStarted = !allRounds[index].isStarted
-        allRounds[index].actStart = nil
-        allRounds[index].firstBallot = nil
-        allRounds[index].roundCompleted = nil
-        estimateFutureStartsAfterEdit(forRoundIndex: index)
-        writeRounds()
-    }
+
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let start = UITableViewRowAction(style: .default, title: "Start") {(action, indexPath) in
@@ -239,7 +222,7 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
                 ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(ac, animated: true)
             } else {
-                self.unstartRound(index: indexPath.row)
+                unstartRoundSuper(index: indexPath.row)
             }
             self.tableView.reloadData()
         }

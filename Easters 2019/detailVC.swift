@@ -17,8 +17,8 @@ class detailVC: UIViewController {
     @IBOutlet weak var firstBallotButton: UIButton!
     @IBOutlet weak var roundCompletedButton: UIButton!
     
-    @IBOutlet weak var startRound: UIButton!
-    @IBOutlet weak var unstartRound: UIButton!
+    @IBOutlet weak var startRoundButton: UIButton!
+    @IBOutlet weak var unstartRoundButton: UIButton!
     
     var roundIndex:Int!
 
@@ -41,47 +41,44 @@ class detailVC: UIViewController {
     }
     
     func configureStartButtons(i: Int) {
-        startRound.layer.cornerRadius = 10.0
-        unstartRound.layer.cornerRadius = 10.0
+        startRoundButton.layer.cornerRadius = 10.0
+        unstartRoundButton.layer.cornerRadius = 10.0
         
-        startRound.setTitle("Start Round", for: .normal)
-        unstartRound.setTitle("Unstart Round", for: .normal)
+        startRoundButton.setTitle("Start Round", for: .normal)
+        unstartRoundButton.setTitle("Unstart Round", for: .normal)
         
         if allRounds[i].isStarted {
-            startRound.backgroundColor = UIColor.lightGray
-            unstartRound.backgroundColor = UIColor.orange
+            startRoundButton.backgroundColor = UIColor.lightGray
+            unstartRoundButton.backgroundColor = UIColor.orange
             
-            startRound.isUserInteractionEnabled = false
-            unstartRound.isUserInteractionEnabled = true
+            startRoundButton.isUserInteractionEnabled = false
+            unstartRoundButton.isUserInteractionEnabled = true
         } else {
-            startRound.backgroundColor = UIColor.green
-            unstartRound.backgroundColor = UIColor.lightGray
+            startRoundButton.backgroundColor = UIColor.green
+            unstartRoundButton.backgroundColor = UIColor.lightGray
             
-            startRound.isUserInteractionEnabled = true
-            unstartRound.isUserInteractionEnabled = false
+            startRoundButton.isUserInteractionEnabled = true
+            unstartRoundButton.isUserInteractionEnabled = false
         }
     }
     
     @IBAction func start() {
-        allRounds[roundIndex].isStarted = !allRounds[roundIndex].isStarted
-        allRounds[roundIndex].actStart = Date()
-        allRounds[roundIndex].firstBallot = nil
-        allRounds[roundIndex].roundCompleted = nil
-        allRounds[roundIndex].uniqueDelay = calculateUniqueDelay(forRoundIndex: roundIndex)
-        writeRounds()
+        startRoundSuper(index: roundIndex)
+        
+        timeCall(vc: self, roundIndex: roundIndex)
+        
         configureStartButtons(i: roundIndex)
         fillInTimes(i: roundIndex)
+        writeRounds()
     }
     
     @IBAction func unstart() {
-        allRounds[roundIndex].isStarted = !allRounds[roundIndex].isStarted
-        allRounds[roundIndex].actStart = nil
-        allRounds[roundIndex].firstBallot = nil
-        allRounds[roundIndex].roundCompleted = nil
-        allRounds[roundIndex].uniqueDelay = calculateUniqueDelay(forRoundIndex: roundIndex)
-        writeRounds()
+       
+        
+        
         configureStartButtons(i: roundIndex)
         fillInTimes(i: roundIndex)
+        writeRounds()
     }
     
     func fillInTimes(i: Int) {
