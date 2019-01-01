@@ -138,7 +138,6 @@ class detailVC: UIViewController {
             debatesStartButton.backgroundColor = UIColor.lightGray
         }
         
-
         // First Ballot
         firstBallotButton.layer.cornerRadius = 10.0
         if let fb = round.firstBallot {
@@ -169,8 +168,6 @@ class detailVC: UIViewController {
             roundCompletedButton.isUserInteractionEnabled = false
         }
     }
-    
-    
     
     @IBAction func adjAllocSelected() {
         if allRounds[roundIndex].adjAllocCompleted != nil {
@@ -211,13 +208,7 @@ class detailVC: UIViewController {
         fillInTimes(i: roundIndex)
         writeRounds()
     }
-    
-    
-    
-    
-    
-    
-    
+
     @objc func reschedule() {
         if allRounds[roundIndex].isStarted {
             let ac = UIAlertController(title: "Round Locked", message: "\(allRounds[roundIndex].label_long!) is marked as started and cannot be rescheduled.", preferredStyle: .alert)
@@ -234,13 +225,5 @@ class detailVC: UIViewController {
                 navigationController?.pushViewController(edittimevc, animated: true)
             }
         }
-        
-        
     }
-    
-    
-    
-
-   
-
 }
