@@ -210,7 +210,7 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if allRounds[indexPath.row].isStarted {
-            return 100
+            return 120
         } else {
             return 185
         }
