@@ -62,10 +62,15 @@
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="y9i-Bp-st5">
-                                            <rect key="frame" x="20" y="26.5" width="199" height="132"/>
+                                            <rect key="frame" x="20" y="67.5" width="428" height="50"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rq8-rL-bmd">
-                                                    <rect key="frame" x="0.0" y="0.0" width="199" height="36"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="120.5" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="iHS-ZC-wd4">
+                                                            <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                                                        </constraint>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -74,9 +79,11 @@
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scheduled 10:00am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnC-CG-a92">
-                                                    <rect key="frame" x="0.0" y="49" width="199" height="19"/>
+                                                    <rect key="frame" x="133.5" y="0.0" width="199" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="19" id="hHt-DV-BcH"/>
+                                                        <constraint firstAttribute="height" constant="19" id="hHt-DV-BcH">
+                                                            <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                                                        </constraint>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                     <nil key="textColor"/>
@@ -86,9 +93,11 @@
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round #" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udO-E2-VfU">
-                                                    <rect key="frame" x="0.0" y="81" width="199" height="19"/>
+                                                    <rect key="frame" x="345.5" y="0.0" width="82.5" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="19" id="fgb-Eg-KlY"/>
+                                                        <constraint firstAttribute="height" constant="19" id="fgb-Eg-KlY">
+                                                            <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                                                        </constraint>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                     <nil key="textColor"/>
@@ -97,10 +106,12 @@
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                                     </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SNS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xxj-Ii-Hhb">
-                                                    <rect key="frame" x="0.0" y="113" width="199" height="19"/>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SNS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xxj-Ii-Hhb">
+                                                    <rect key="frame" x="428" y="0.0" width="0.0" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="19" id="DeX-af-ZeJ"/>
+                                                        <constraint firstAttribute="height" constant="19" id="DeX-af-ZeJ">
+                                                            <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                                                        </constraint>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                     <nil key="textColor"/>
@@ -110,7 +121,7 @@
                                                     </variation>
                                                 </label>
                                             </subviews>
-                                            <variation key="heightClass=regular-widthClass=regular" spacing="13"/>
+                                            <variation key="heightClass=regular-widthClass=regular" axis="horizontal" spacing="13"/>
                                         </stackView>
                                     </subviews>
                                     <constraints>
@@ -426,8 +437,8 @@
                         <outlet property="firstBallotButton" destination="AD5-sx-MTO" id="sO5-Z3-WoT"/>
                         <outlet property="motionReleasedButton" destination="SSo-4Z-SPg" id="wrB-2A-GKc"/>
                         <outlet property="roundCompletedButton" destination="jbi-ZN-sDa" id="JRM-vp-pEy"/>
-                        <outlet property="startRound" destination="ZfF-c4-DMV" id="lAe-5J-4sv"/>
-                        <outlet property="unstartRound" destination="4MA-oU-03S" id="vrI-ze-V9G"/>
+                        <outlet property="startRoundButton" destination="ZfF-c4-DMV" id="TtL-D5-zGE"/>
+                        <outlet property="unstartRoundButton" destination="4MA-oU-03S" id="Oz8-uf-Qhb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kTc-PU-FUQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
