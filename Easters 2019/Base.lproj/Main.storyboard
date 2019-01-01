@@ -382,12 +382,6 @@
                                                     <date key="date" timeIntervalSinceReferenceDate="567879701.24521697">
                                                         <!--2018-12-30 16:21:41 +0000-->
                                                     </date>
-                                                    <date key="minimumDate" timeIntervalSinceReferenceDate="577202400">
-                                                        <!--2019-04-17 14:00:00 +0000-->
-                                                    </date>
-                                                    <date key="maximumDate" timeIntervalSinceReferenceDate="577461600">
-                                                        <!--2019-04-20 14:00:00 +0000-->
-                                                    </date>
                                                     <locale key="locale" localeIdentifier="en_AU"/>
                                                     <connections>
                                                         <action selector="dpShowDateAction:" destination="kLB-cE-cMO" eventType="valueChanged" id="HjO-1n-lkk"/>

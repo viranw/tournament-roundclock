@@ -204,6 +204,10 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
         allRounds[index].roundCompleted = nil
         estimateFutureStartsAfterEdit(forRoundIndex: index)
         writeRounds()
+        
+        let ac = UIAlertController(title: "Time Call", message: "The time now is \(allRounds[index].actStart). Debates will start at \(allRounds[index].debatesStart!)", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(ac, animated: true)
     }
     
     func unstartRound(index: Int) {

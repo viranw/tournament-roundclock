@@ -67,6 +67,7 @@ class detailVC: UIViewController {
         allRounds[roundIndex].actStart = Date()
         allRounds[roundIndex].firstBallot = nil
         allRounds[roundIndex].roundCompleted = nil
+        allRounds[roundIndex].uniqueDelay = calculateUniqueDelay(forRoundIndex: roundIndex)
         writeRounds()
         configureStartButtons(i: roundIndex)
         fillInTimes(i: roundIndex)
@@ -77,6 +78,7 @@ class detailVC: UIViewController {
         allRounds[roundIndex].actStart = nil
         allRounds[roundIndex].firstBallot = nil
         allRounds[roundIndex].roundCompleted = nil
+        allRounds[roundIndex].uniqueDelay = calculateUniqueDelay(forRoundIndex: roundIndex)
         writeRounds()
         configureStartButtons(i: roundIndex)
         fillInTimes(i: roundIndex)
@@ -84,14 +86,6 @@ class detailVC: UIViewController {
     
     func fillInTimes(i: Int) {
         let round = allRounds[i]
-        
-        
-        //print(round.adjAllocCompleted!)
-        
-        //print(round.drawReleased)
-        //print(round.actStart)
-        //print(round.firstBallot)
-        //print(round.roundCompleted)
         
         // Adj Allocation Completed
         adjAllocCompletedButton.layer.cornerRadius = 10.0

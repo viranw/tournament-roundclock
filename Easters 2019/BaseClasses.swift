@@ -92,9 +92,11 @@ func calculateUniqueDelay(forRoundIndex i: Int) -> TimeInterval {
         print("Knockon: \(total)")
         let unique = total - knockon
         print(calculateRawDelay(for: allRounds[i]) - calculateRawDelay(for: allRounds[i-1]))
+        print(unique)
         return unique
     } else {
         // Either round 1 or the first round of the day - Delay is entirely unique
+        print(total)
         return total
     }
 }
