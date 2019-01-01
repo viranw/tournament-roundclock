@@ -15,6 +15,7 @@ let checkinLead:TimeInterval = -1200.0
 let prepTime:TimeInterval = 1800.0
 
 let tabSite:String = "http://easters2019.herokuapp.com"
+let tournamentName = "Easters 2019"
 
 
 func initialBuild() {

@@ -219,14 +219,25 @@ func timeCall(vc: UIViewController, roundIndex: Int) {
     
 }
 
-// Estimated Delay for a round = Sched vs Act/Est from the last round + sched vs est from the current round
-
-
-
-
-
-
-
+func updateProgressBar(bar:UIProgressView, forRoundIndex: Int) {
+    var progress:Float = 0.0
+    let round = allRounds[forRoundIndex]
+    
+    for check in [round.adjAllocCompleted, round.drawReleased, round.actStart, round.firstBallot, round.roundCompleted] {
+        if check != nil {
+            progress += 0.2
+        }
+    }
+    bar.progress = progress
+    
+    if bar.progress < 0.5 {
+        bar.tintColor = UIColor.re
+    } else if bar.progress > 0.5 && bar.progress < 1 {
+        bar.tintColor = UIColor.blue
+    } else if bar.progress == 1 {
+        bar.tintColor = UIColor.green
+    }
+}
 
 
 

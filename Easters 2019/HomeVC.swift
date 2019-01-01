@@ -27,10 +27,9 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
         
         // Basic navigation setup
         navigationController?.navigationBar.prefersLargeTitles = true
-        title = "Rounds"
+        title = tournamentName
         
-        
-        //TODO: Set left item to open the tab site
+    
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Tab", style: .plain, target: self, action: #selector(openTab))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(reset1))
         
@@ -46,6 +45,7 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
                 print("Failed to load from UserDefaults, loading default")
             }
         }
+        tableView.reloadData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -59,12 +59,13 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> HomeCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! HomeCell
         let round = allRounds[indexPath.row]
-
         
         // Title Label
         cell.titleLabel?.text = round.label_long
-        if round.isStarted {
+        if round.roundCompleted != nil {
             cell.titleLabel.textColor = UIColor.lightGray
+        } else {
+            cell.titleLabel.textColor = UIColor.black
         }
         
         // Scheduled Label
@@ -74,26 +75,23 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
             cell.sched.textColor = UIColor.lightGray
         }
         
+        //Progress Bar
+        updateProgressBar(bar: cell.progressBar, forRoundIndex: indexPath.row)
+        
+        
+        
+        
         // Left sched/act delay - Text and formatting
         if round.isStarted {
             let adelay = calculateRawDelay(for: round)
-            cell.delayleft?.textColor = UIColor.lightGray
+            
             
             if adelay >= 0 {
                 cell.delayleft?.text = "Actual +\(String(Int(adelay/60)))m"
             } else {
                 cell.delayleft?.text = "Actual \(String(Int(adelay/60)))m"
             }
-            
-            if adelay == 0 {
-                cell.delayleft?.textColor = UIColor.blue
-            } else if adelay < 0 {
-                cell.delayleft?.textColor = UIColor.green
-            } else if adelay < 901 {
-                cell.delayleft?.textColor = UIColor.orange
-            } else {
-                cell.delayleft?.textColor = UIColor.red
-            }
+
         } else {
             let sdelay = calculateRawDelay(for: round)
             if sdelay >= 0 {
@@ -102,7 +100,7 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
                 cell.delayleft?.text = "Estimated \(String(Int(sdelay/60)))m"
             }
             if sdelay == 0 {
-                cell.delayleft?.textColor = UIColor.blue
+                cell.delayleft?.textColor = UIColor.lightGray
             } else if sdelay < 0 {
                 cell.delayleft?.textColor = UIColor.green
             } else if sdelay < 901 {
@@ -127,7 +125,7 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
             }
             
             if snsgap == 0 {
-                cell.snsLeft.textColor = UIColor.blue
+                cell.snsLeft.textColor = UIColor.lightGray
             } else if snsgap < 0 {
                 cell.snsLeft.textColor = UIColor.green
             } else if snsgap < 901 {
@@ -259,10 +257,10 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
         } else {
             start.backgroundColor = UIColor.green
             unstart.backgroundColor = UIColor.gray
-            reschedule.backgroundColor = UIColor.yellow
+            reschedule.backgroundColor = UIColor.purple
         }
         
-        return [start, unstart]
+        return [start, unstart, reschedule]
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -321,6 +319,7 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
             self.tableView.reloadData()
         })
         self.present(ac, animated: true)
+        self.tableView.reloadData()
     }
     
     

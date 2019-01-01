@@ -20,6 +20,12 @@ class detailVC: UIViewController {
     @IBOutlet weak var startRoundButton: UIButton!
     @IBOutlet weak var unstartRoundButton: UIButton!
     
+    @IBOutlet weak var headingLabel: UILabel!
+    @IBOutlet weak var releaseLabel: UILabel!
+    @IBOutlet weak var estLabel: UILabel!
+    
+    @IBOutlet weak var progressBar: UIProgressView!
+    
     var roundIndex:Int!
 
     override func viewDidLoad() {
@@ -32,6 +38,18 @@ class detailVC: UIViewController {
         if let aac = allRounds[roundIndex].adjAllocCompleted {
             print(aac)
         }
+        
+        headingLabel.text = "for \(allRounds[roundIndex].label_long!)"
+        
+        let schedRls = DateFormatter.localizedString(from: allRounds[roundIndex].schedStart, dateStyle: .none, timeStyle: .short)
+        
+        let estRls = DateFormatter.localizedString(from: allRounds[roundIndex].estStart, dateStyle: .none, timeStyle: .short)
+        
+        releaseLabel.text = "Scheduled Release at \(schedRls)"
+        estLabel.text = "Estimated Release at \(estRls)"
+        
+        updateProgressBar(bar: progressBar, forRoundIndex: indexPath.row)
+        
 
         
         configureStartButtons(i: roundIndex)
@@ -72,6 +90,7 @@ class detailVC: UIViewController {
     }
     
     @IBAction func unstart() {
+        unstartRoundSuper(index: roundIndex)
         configureStartButtons(i: roundIndex)
         fillInTimes(i: roundIndex)
         writeRounds()

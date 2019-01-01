@@ -17,6 +17,8 @@ class HomeCell: UITableViewCell {
     @IBOutlet weak var row1: UILabel!
     @IBOutlet weak var row2: UILabel!
     @IBOutlet weak var row3: UILabel!
+    @IBOutlet weak var progressBar: UIProgressView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
