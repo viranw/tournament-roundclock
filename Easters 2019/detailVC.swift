@@ -64,7 +64,6 @@ class detailVC: UIViewController {
     
     @IBAction func start() {
         startRoundSuper(index: roundIndex)
-        
         timeCall(vc: self, roundIndex: roundIndex)
         
         configureStartButtons(i: roundIndex)
@@ -73,9 +72,6 @@ class detailVC: UIViewController {
     }
     
     @IBAction func unstart() {
-       
-        
-        
         configureStartButtons(i: roundIndex)
         fillInTimes(i: roundIndex)
         writeRounds()

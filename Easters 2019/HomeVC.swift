@@ -63,10 +63,16 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
         
         // Title Label
         cell.titleLabel?.text = round.label_long
+        if round.isStarted {
+            cell.titleLabel.textColor = UIColor.lightGray
+        }
         
         // Scheduled Label
         let sched = DateFormatter.localizedString(from: round.schedStart, dateStyle: .none, timeStyle: .short)
         cell.sched?.text = "Scheduled \(sched)"
+        if round.isStarted {
+            cell.sched.textColor = UIColor.lightGray
+        }
         
         // Left sched/act delay - Text and formatting
         if round.isStarted {
@@ -227,12 +233,33 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
             self.tableView.reloadData()
         }
         
+        let reschedule = UITableViewRowAction(style: .default, title: "Reschedule") {(action, indexPath) in
+            
+            if allRounds[indexPath.row].isStarted {
+                let ac = UIAlertController(title: "Round Locked", message: "\(allRounds[indexPath.row].label_long!) is marked as started and cannot be rescheduled.", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(ac, animated: true)
+            } else {
+                if let edittimevc = self.storyboard?.instantiateViewController(withIdentifier: "EditTimes") as? EditTimesVC {
+                    // Pass variables
+                    edittimevc.currentStart = allRounds[indexPath.row].estStart
+                    edittimevc.round = allRounds[indexPath.row].label_long
+                    edittimevc.index = indexPath.row
+                    
+                    //3: Push controller
+                    self.navigationController?.pushViewController(edittimevc, animated: true)
+                }
+            }
+        }
+        
         if allRounds[indexPath.row].isStarted {
-            start.backgroundColor = UIColor.gray
+            start.backgroundColor = UIColor.lightGray
             unstart.backgroundColor = UIColor.orange
+            reschedule.backgroundColor = UIColor.lightGray
         } else {
             start.backgroundColor = UIColor.green
             unstart.backgroundColor = UIColor.gray
+            reschedule.backgroundColor = UIColor.yellow
         }
         
         return [start, unstart]
