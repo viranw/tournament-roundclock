@@ -14,18 +14,11 @@ var allRounds:[round] = []
 var upcomingRounds:[round] = []
 var inProgressRounds:[round] = []
 var pastRounds:[round] = []
-
 var tournamentDelay:TimeInterval = 0
-
 var allNotifications:[notificationObject] = []
 var notificationsForRound:[String:notificationObject] = [:]
 
 var cal = Calendar(identifier: .gregorian)
-
-
-
-
-
 
 class round: NSObject, Codable {
     
@@ -60,12 +53,9 @@ class round: NSObject, Codable {
         self.estStart = schedStart
         self.snsStart = schedStart
         self.uniqueDelay = 0.0
-        
         self.checkincloses = schedStart.addingTimeInterval(checkinLead)
         
     }
-    
-
 }
 
 func startRoundSuper(index: Int) {
@@ -137,7 +127,6 @@ func estimateFutureStartsAfterEdit(forRoundIndex index:Int) {
             }
         }
     }
-    
 }
 
 func calculateKnockOn(forRoundIndex i: Int) -> TimeInterval {
@@ -215,8 +204,6 @@ func timeCall(vc: UIViewController, roundIndex: Int) {
         let ac = UIAlertController(title: "Error", message: "The selected round does not have a recorded motion release time.", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
     }
-
-    
 }
 
 func updateProgressBar(bar:UIProgressView, forRoundIndex: Int) {
@@ -238,6 +225,3 @@ func updateProgressBar(bar:UIProgressView, forRoundIndex: Int) {
         bar.tintColor = UIColor.green
     }
 }
-
-
-
