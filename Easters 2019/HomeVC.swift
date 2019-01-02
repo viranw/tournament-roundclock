@@ -27,7 +27,7 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
         
         // Basic navigation setup
         navigationController?.navigationBar.prefersLargeTitles = true
-        title = tournamentName
+        title = "Loading"
         
     
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Tab", style: .plain, target: self, action: #selector(openTab))
@@ -48,6 +48,7 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
             }
             
             loadingAC(successful: success)
+            title = tournamentName
         }
         tableView.reloadData()
     }
@@ -289,11 +290,12 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
         
         let resetRound = UITableViewRowAction(style: .default, title: "Reset") {(action, indexPath) in
             let short = allRounds[indexPath.row].label_short!
-            let ac = UIAlertController(title: "Reset \(String(short))", message: "Are you sure you want to reset \(String(short)) to the schedule? This cannot be undone.", preferredStyle: .alert)
+            let ac = UIAlertController(title: "Reset \(String(short))", message: "Are you sure you want to reset \(String(short)) to the schedule and reset the delays of future rounds on the same day? This cannot be undone.", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Confirm", style: .destructive) { [unowned self] (action: UIAlertAction) in
                 initialBuild(rdIndex: indexPath.row)
                 self.tableView.reloadData()
                 })
+            ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             self.present(ac, animated: true)
         }
         
@@ -303,12 +305,12 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
         } else if allRounds[indexPath.row].isStarted {
             unstart.backgroundColor = UIColor.orange
             reschedule.backgroundColor = UIColor.lightGray
-            return [unstart, reschedule]
+            return [reschedule, unstart]
         } else {
             start.backgroundColor = UIColor.green
             unstart.backgroundColor = UIColor.gray
             reschedule.backgroundColor = UIColor.purple
-            return [start, reschedule,resetRound]
+            return [resetRound, reschedule, start]
         }
     }
     
