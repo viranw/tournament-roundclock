@@ -17,7 +17,7 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
     }
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         registerLocal()
