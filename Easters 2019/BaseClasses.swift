@@ -11,6 +11,7 @@ import UserNotifications
 import UIKit
 
 var allRounds:[round] = []
+var allRoundsIntermediate:[round] = []
 var upcomingRounds:[round] = []
 var inProgressRounds:[round] = []
 var pastRounds:[round] = []
@@ -92,20 +93,15 @@ func calculateRawDelay(for round: round) -> TimeInterval {
 func calculateUniqueDelay(forRoundIndex i: Int) -> TimeInterval {
     //Unique = Total minus knockon
     let total = calculateRawDelay(for: allRounds[i])
-    print("Raw Delay: \(total)")
     var knockon:TimeInterval = 0.0
     
     if i != 0 && allRounds[i].day == allRounds[i-1].day {
         // Not round 1, not the first round of the day - There's knockon
         knockon = calculateRawDelay(for: allRounds[i-1])
-        print("Knockon: \(total)")
         let unique = total - knockon
-        print(calculateRawDelay(for: allRounds[i]) - calculateRawDelay(for: allRounds[i-1]))
-        print(unique)
         return unique
     } else {
         // Either round 1 or the first round of the day - Delay is entirely unique
-        print(total)
         return total
     }
 }
@@ -141,15 +137,8 @@ func calculateDelayWithKnockOn(forRoundIndex i:Int) -> Date {
         return allRounds[i].schedStart.addingTimeInterval(calculateRawDelay(for: allRounds[i]))
     } else {
         if allRounds[i].day == allRounds[i-1].day {
-            print("---")
-            print("Before: \(allRounds[i].schedStart)")
             // Past round occurred on the same day, add the delay from that round to the estimated unique delay from this round
-            print("Round \(i+1) occurs on the same day as Round \(i)")
-            print("\(calculateRawDelay(for: allRounds[i-1]))")
             let intermediate = allRounds[i].schedStart.addingTimeInterval(calculateRawDelay(for: allRounds[i-1]))
-            print("Intermediate: \(intermediate)")
-            print("RoundDelay: \(calculateUniqueDelay(forRoundIndex: i))")
-            print("After: \(intermediate.addingTimeInterval(calculateUniqueDelay(forRoundIndex: i)))")
             return intermediate.addingTimeInterval(calculateUniqueDelay(forRoundIndex: i))
         } else {
             return allRounds[i].schedStart.addingTimeInterval(calculateRawDelay(for: allRounds[i]))

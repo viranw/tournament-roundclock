@@ -35,17 +35,33 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
         
         
         // Data load - Load default data, then overwrite with saved data if it exists
-        initialBuild()
+        initialBuild(rdIndex: nil)
         let defaults = UserDefaults.standard
         if let savedRounds = defaults.object(forKey: "allRounds") as? Data {
             let jsonDecoder = JSONDecoder()
+            var success:Bool = false
             do {
                 allRounds = try jsonDecoder.decode([round].self, from: savedRounds)
+                success = true
             } catch {
-                print("Failed to load from UserDefaults, loading default")
+                success = false
             }
+            
+            loadingAC(successful: success)
         }
         tableView.reloadData()
+    }
+    
+    func loadingAC(successful: Bool) {
+        if successful {
+            let ac1 = UIAlertController(title: "Load Successful", message: "Saved tournament data loaded.", preferredStyle: .alert)
+            ac1.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(ac1, animated: true)
+        } else {
+            let ac2 = UIAlertController(title: "Load Unsuccessful", message: "Saved tournament data failed to load. Tournament timings have been reset to the schedule.", preferredStyle: .alert)
+            ac2.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
+            self.present(ac2, animated: true)
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -61,7 +77,6 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
         let round = allRounds[indexPath.row]
         
         // Title Label
-        print(round.label_long.count)
         if round.label_long.count < 14 {
             cell.titleLabel?.text = round.label_long
         } else {
@@ -272,6 +287,16 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
             }
         }
         
+        let resetRound = UITableViewRowAction(style: .default, title: "Reset") {(action, indexPath) in
+            let short = allRounds[indexPath.row].label_short!
+            let ac = UIAlertController(title: "Reset \(String(short))", message: "Are you sure you want to reset \(String(short)) to the schedule? This cannot be undone.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Confirm", style: .destructive) { [unowned self] (action: UIAlertAction) in
+                initialBuild(rdIndex: indexPath.row)
+                self.tableView.reloadData()
+                })
+            self.present(ac, animated: true)
+        }
+        
         if allRounds[indexPath.row].roundCompleted != nil {
             reschedule.backgroundColor = UIColor.lightGray
             return [reschedule]
@@ -283,7 +308,7 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
             start.backgroundColor = UIColor.green
             unstart.backgroundColor = UIColor.gray
             reschedule.backgroundColor = UIColor.purple
-            return [start, reschedule]
+            return [start, reschedule,resetRound]
         }
     }
     
@@ -335,10 +360,10 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
     
     // Reset data
     @objc func reset1() {
-        let ac = UIAlertController(title: "Reset", message: "Are you sure you want to reset timings of all rounds to the schedule?", preferredStyle: .alert)
+        let ac = UIAlertController(title: "Reset", message: "Are you sure you want to reset timings of all rounds to the schedule? This CANNOT be undone.", preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        ac.addAction(UIAlertAction(title: "Confirm", style: .default) { (unowned) in
-            initialBuild()
+        ac.addAction(UIAlertAction(title: "Confirm", style: .destructive) { (unowned) in
+            initialBuild(rdIndex: nil)
             writeRounds()
             self.tableView.reloadData()
         })

@@ -40,10 +40,6 @@ class detailVC: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reschedule", style: .plain, target: self, action: #selector(reschedule))
         
-        if let aac = allRounds[roundIndex].adjAllocCompleted {
-            print(aac)
-        }
-        
         headingLabel.text = "for \(allRounds[roundIndex].label_long!)"
         
         let schedRls = DateFormatter.localizedString(from: allRounds[roundIndex].schedStart, dateStyle: .none, timeStyle: .short)

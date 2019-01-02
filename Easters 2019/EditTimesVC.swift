@@ -61,8 +61,6 @@ class EditTimesVC: UITableViewController {
     
     @IBAction func dpShowDateAction(_ sender: Any) {
         new.text = DateFormatter.localizedString(from: dp.date, dateStyle: .none, timeStyle: .short)
-        print(dp.date)
-        
         diff = dp.date.timeIntervalSince(allRounds[index].schedStart)
         
         delay.text = "\(String(Int(diff/60))) minutes"
