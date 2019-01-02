@@ -17,6 +17,7 @@
 		8002A10E21C762C7006E3597 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002A10D21C762C7006E3597 /* HomeCell.swift */; };
 		8037710D21D9D34100C90979 /* detailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8037710C21D9D34100C90979 /* detailVC.swift */; };
 		8055F0B721D92559003E2C29 /* EditTimesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055F0B621D92559003E2C29 /* EditTimesVC.swift */; };
+		8059EDC621DC504800E235C4 /* notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8059EDC521DC504800E235C4 /* notifications.swift */; };
 		806EF5D321CB5FB00053653F /* tournamentBuild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806EF5D221CB5FB00053653F /* tournamentBuild.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		8002A10D21C762C7006E3597 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		8037710C21D9D34100C90979 /* detailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailVC.swift; sourceTree = "<group>"; };
 		8055F0B621D92559003E2C29 /* EditTimesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimesVC.swift; sourceTree = "<group>"; };
+		8059EDC521DC504800E235C4 /* notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notifications.swift; sourceTree = "<group>"; };
 		806EF5D221CB5FB00053653F /* tournamentBuild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tournamentBuild.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +71,7 @@
 				8002A0F621C76069006E3597 /* AppDelegate.swift */,
 				8002A0F821C76069006E3597 /* HomeVC.swift */,
 				8002A10B21C76097006E3597 /* BaseClasses.swift */,
+				8059EDC521DC504800E235C4 /* notifications.swift */,
 				806EF5D221CB5FB00053653F /* tournamentBuild.swift */,
 				8002A0FA21C76069006E3597 /* Main.storyboard */,
 				8037710C21D9D34100C90979 /* detailVC.swift */,
@@ -154,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8002A0F921C76069006E3597 /* HomeVC.swift in Sources */,
+				8059EDC621DC504800E235C4 /* notifications.swift in Sources */,
 				8002A10C21C76098006E3597 /* BaseClasses.swift in Sources */,
 				8055F0B721D92559003E2C29 /* EditTimesVC.swift in Sources */,
 				8002A0F721C76069006E3597 /* AppDelegate.swift in Sources */,
