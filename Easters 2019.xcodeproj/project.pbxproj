@@ -68,11 +68,11 @@
 		8002A0F521C76069006E3597 /* Easters 2019 */ = {
 			isa = PBXGroup;
 			children = (
+				806EF5D221CB5FB00053653F /* tournamentBuild.swift */,
 				8002A0F621C76069006E3597 /* AppDelegate.swift */,
 				8002A0F821C76069006E3597 /* HomeVC.swift */,
 				8002A10B21C76097006E3597 /* BaseClasses.swift */,
 				8059EDC521DC504800E235C4 /* notifications.swift */,
-				806EF5D221CB5FB00053653F /* tournamentBuild.swift */,
 				8002A0FA21C76069006E3597 /* Main.storyboard */,
 				8037710C21D9D34100C90979 /* detailVC.swift */,
 				8055F0B621D92559003E2C29 /* EditTimesVC.swift */,

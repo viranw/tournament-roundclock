@@ -31,7 +31,12 @@ class detailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = allRounds[roundIndex].label_long
+        if allRounds[roundIndex].label_long.count < 18 {
+            title = allRounds[roundIndex].label_long
+        } else {
+            title = allRounds[roundIndex].label_short
+        }
+        
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reschedule", style: .plain, target: self, action: #selector(reschedule))
         

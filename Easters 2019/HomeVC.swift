@@ -61,7 +61,14 @@ class HomeVC: UITableViewController, UIViewControllerPreviewingDelegate {
         let round = allRounds[indexPath.row]
         
         // Title Label
-        cell.titleLabel?.text = round.label_long
+        print(round.label_long.count)
+        if round.label_long.count < 14 {
+            cell.titleLabel?.text = round.label_long
+        } else {
+            cell.titleLabel?.text = round.label_short
+        }
+        
+        
         if round.roundCompleted != nil {
             cell.titleLabel.textColor = UIColor.lightGray
         } else {
