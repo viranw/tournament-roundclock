@@ -365,40 +365,6 @@ func scheduleNotification(title:String, body:String, sound: UNNotificationSound,
 
 
 
-
-func shortTimeStringfromComponents(components: DateComponents) -> String {
-    
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateStyle = DateFormatter.Style.none
-    dateFormatter.timeStyle = DateFormatter.Style.short
-    
-    let cal = Calendar(identifier: .gregorian)
-    let start = cal.date(from: components)!
-    let timeString = dateFormatter.string(from: start)
-    
-    return timeString
-}
-
-func shortTimefromComponents(components: DateComponents) -> Date {
-    
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateStyle = DateFormatter.Style.none
-    dateFormatter.timeStyle = DateFormatter.Style.short
-    
-    let cal = Calendar(identifier: .gregorian)
-    let start = cal.date(from: components)!
-    return start
-}
-
-func shortTimeStringfromDate(date: Date) -> String {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateStyle = DateFormatter.Style.none
-    dateFormatter.timeStyle = DateFormatter.Style.short
-    
-    let timeString = dateFormatter.string(from: date)
-    return timeString
-}
-
 func scheduleNotification2(title:String, body:String, sound: UNNotificationSound, delay:Int) {
     
     let center = UNUserNotificationCenter.current()
