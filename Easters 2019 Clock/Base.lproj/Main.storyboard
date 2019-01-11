@@ -19,17 +19,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="WpZ-hh-00c">
-                                <rect key="frame" x="223.5" y="74" width="919" height="73"/>
+                                <rect key="frame" x="223.5" y="74" width="919" height="95"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="5qW-Pa-dSs">
-                                        <rect key="frame" x="0.0" y="0.0" width="919" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="919" height="40"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dap-R3-OIY">
-                                                <rect key="frame" x="0.0" y="0.0" width="800" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="800" height="41"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="1200" id="az7-cA-kFY">
                                                         <variation key="heightClass=regular-widthClass=regular" constant="800"/>
                                                     </constraint>
+                                                    <constraint firstAttribute="height" constant="40" id="vVt-qT-Nrm"/>
                                                 </constraints>
                                                 <segments>
                                                     <segment title="First"/>
@@ -40,9 +41,9 @@
                                                 </connections>
                                             </segmentedControl>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJO-6g-Ta7">
-                                                <rect key="frame" x="819" y="0.0" width="100" height="30"/>
+                                                <rect key="frame" x="819" y="0.0" width="100" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="23b-KR-YWJ"/>
+                                                    <constraint firstAttribute="height" constant="40" id="23b-KR-YWJ"/>
                                                     <constraint firstAttribute="width" constant="100" id="xDI-Wa-bzI"/>
                                                 </constraints>
                                                 <state key="normal" title="Switch"/>
@@ -53,8 +54,9 @@
                                         </subviews>
                                     </stackView>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vn7-oY-KG0">
-                                        <rect key="frame" x="9.5" y="45" width="900" height="29"/>
+                                        <rect key="frame" x="9.5" y="55" width="900" height="41"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="I6g-Bs-ZOL"/>
                                             <constraint firstAttribute="width" constant="1300" id="jou-xU-x9I">
                                                 <variation key="heightClass=regular-widthClass=regular" constant="900"/>
                                             </constraint>
