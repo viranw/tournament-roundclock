@@ -19,11 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var roundLabel: UILabel!
     
     @IBOutlet weak var switchStack: UIStackView!
-    
-    
-    
-    
-    
+  
     var selectedRound:round?
     var displayRound:round?
     
@@ -53,23 +49,16 @@ class ViewController: UIViewController {
             daySelector.insertSegment(withTitle: value, at: key, animated: false)
         }
         
-        let index = daySelector.selectedSegmentIndex
-        print(index)
-        var roundstopopulate:[round] = []
-        
-        for round in allRounds {
-            if round.day == index {
-                roundstopopulate.append(round)
+        for day in (0...daySelector.numberOfSegments-1) {
+            if getRoundsForDay(day: day).count == 0 {
+                daySelector.setEnabled(false, forSegmentAt: day)
+            } else {
+                daySelector.setEnabled(true, forSegmentAt: day)
             }
         }
         
-        roundSelector.removeAllSegments()
-        var ind = 0
-        for i in roundstopopulate {
-            roundSelector.insertSegment(withTitle: i.label_long, at: ind, animated: false)
-            
-            ind += 1
-        }
+       updateRoundOptions()
+        
         
         timerLabel.text = ""
 
@@ -96,27 +85,44 @@ class ViewController: UIViewController {
             print("Failed to Save")
         }
     }
-
-
-    @IBAction func dayChanged(_ sender: Any) {
-        
-        let index = daySelector.selectedSegmentIndex
-        print(index)
-        var roundstopopulate:[round] = []
-        
+    
+    func getRoundsForDay(day: Int) -> [round] {
+        var rounds:[round] = []
         for round in allRounds {
-            if round.day == index {
-                roundstopopulate.append(round)
+            if round.day == day {
+                rounds.append(round)
             }
         }
+        return rounds
+    }
+
+
+    func updateRoundOptions() {
+        let index = daySelector.selectedSegmentIndex
+
+        let roundstopopulate:[round] = getRoundsForDay(day: index)
         
         roundSelector.removeAllSegments()
         var ind = 0
-        for i in roundstopopulate {
-            roundSelector.insertSegment(withTitle: i.label_long, at: ind, animated: false)
-            
-            ind += 1
+        if roundstopopulate.count == 0 {
+            roundSelector.insertSegment(withTitle: "No rounds today", at: 0, animated: false)
+            roundSelector.setEnabled(false, forSegmentAt: 0)
+        } else {
+            for i in roundstopopulate {
+                roundSelector.insertSegment(withTitle: i.label_short, at: ind, animated: false)
+                roundSelector.setEnabled(true, forSegmentAt: ind)
+                ind += 1
+            }
         }
+        
+    }
+    
+    @IBAction func dayChanged(_ sender: Any) {
+
+        updateRoundOptions()
+        
+        
+        
     }
     
     @IBAction func roundChanged(_ sender: Any) {

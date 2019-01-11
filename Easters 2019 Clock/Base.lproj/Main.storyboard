@@ -18,11 +18,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="WpZ-hh-00c">
-                                <rect key="frame" x="223.5" y="74" width="919" height="95"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Zdi-ya-NMW">
+                                <rect key="frame" x="225.5" y="74" width="915" height="95"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="5qW-Pa-dSs">
-                                        <rect key="frame" x="0.0" y="0.0" width="919" height="40"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="WpZ-hh-00c">
+                                        <rect key="frame" x="0.0" y="0.0" width="800" height="95"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dap-R3-OIY">
                                                 <rect key="frame" x="0.0" y="0.0" width="800" height="41"/>
@@ -40,35 +40,38 @@
                                                     <action selector="dayChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="cOu-CK-BLR"/>
                                                 </connections>
                                             </segmentedControl>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJO-6g-Ta7">
-                                                <rect key="frame" x="819" y="0.0" width="100" height="40"/>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vn7-oY-KG0">
+                                                <rect key="frame" x="0.0" y="55" width="800" height="41"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="23b-KR-YWJ"/>
-                                                    <constraint firstAttribute="width" constant="100" id="xDI-Wa-bzI"/>
+                                                    <constraint firstAttribute="height" constant="40" id="I6g-Bs-ZOL"/>
+                                                    <constraint firstAttribute="width" constant="1300" id="jou-xU-x9I">
+                                                        <variation key="heightClass=regular-widthClass=regular" constant="800"/>
+                                                    </constraint>
                                                 </constraints>
-                                                <state key="normal" title="Switch"/>
+                                                <segments>
+                                                    <segment title="First"/>
+                                                    <segment title="Second"/>
+                                                </segments>
                                                 <connections>
-                                                    <action selector="roundChangedConfirm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ivo-M1-l80"/>
+                                                    <action selector="roundChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="tsu-WK-kaP"/>
                                                 </connections>
-                                            </button>
+                                            </segmentedControl>
                                         </subviews>
-                                    </stackView>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vn7-oY-KG0">
-                                        <rect key="frame" x="9.5" y="55" width="900" height="41"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="I6g-Bs-ZOL"/>
-                                            <constraint firstAttribute="width" constant="1300" id="jou-xU-x9I">
-                                                <variation key="heightClass=regular-widthClass=regular" constant="900"/>
-                                            </constraint>
+                                            <constraint firstAttribute="height" constant="95" id="W93-uS-F25"/>
                                         </constraints>
-                                        <segments>
-                                            <segment title="First"/>
-                                            <segment title="Second"/>
-                                        </segments>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJO-6g-Ta7">
+                                        <rect key="frame" x="815" y="0.0" width="100" height="95"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="95" id="23b-KR-YWJ"/>
+                                            <constraint firstAttribute="width" constant="100" id="xDI-Wa-bzI"/>
+                                        </constraints>
+                                        <state key="normal" title="Switch"/>
                                         <connections>
-                                            <action selector="roundChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="tsu-WK-kaP"/>
+                                            <action selector="roundChangedConfirm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ivo-M1-l80"/>
                                         </connections>
-                                    </segmentedControl>
+                                    </button>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+88:88" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4eC-A6-AYn">
@@ -121,14 +124,14 @@
                         <constraints>
                             <constraint firstItem="4eC-A6-AYn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="AR1-3S-IFu"/>
                             <constraint firstItem="eRm-xP-emC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HFL-Zm-t2T"/>
-                            <constraint firstItem="WpZ-hh-00c" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="JbT-FH-bKT"/>
+                            <constraint firstItem="Zdi-ya-NMW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="OrU-zu-ioa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="054-Wp-EMU" secondAttribute="bottom" constant="50" id="Yvn-kt-o2W"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8L9-XJ-OcH" secondAttribute="trailing" constant="40" id="ZBz-fx-orm"/>
-                            <constraint firstItem="WpZ-hh-00c" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iHz-cS-X2Q"/>
                             <constraint firstItem="4eC-A6-AYn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ia2-uw-t4e"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8L9-XJ-OcH" secondAttribute="bottom" constant="25" id="nUG-vJ-gAP"/>
                             <constraint firstItem="eRm-xP-emC" firstAttribute="baseline" secondItem="8L9-XJ-OcH" secondAttribute="baseline" id="qY1-Y7-z6s"/>
                             <constraint firstItem="054-Wp-EMU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vLK-8o-M76"/>
+                            <constraint firstItem="Zdi-ya-NMW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wbb-u9-vRs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -137,7 +140,7 @@
                         <outlet property="daySelector" destination="Dap-R3-OIY" id="Sxd-BV-vml"/>
                         <outlet property="roundLabel" destination="eRm-xP-emC" id="11t-KO-4JQ"/>
                         <outlet property="roundSelector" destination="vn7-oY-KG0" id="gJc-T8-TnZ"/>
-                        <outlet property="switchStack" destination="WpZ-hh-00c" id="AqW-CD-Kbe"/>
+                        <outlet property="switchStack" destination="Zdi-ya-NMW" id="uoK-hX-C4C"/>
                         <outlet property="timeNowLabel" destination="054-Wp-EMU" id="pE9-sw-aQP"/>
                         <outlet property="timerLabel" destination="4eC-A6-AYn" id="AZS-E1-U2J"/>
                         <outlet property="updateButton" destination="8L9-XJ-OcH" id="Zj0-tl-K7X"/>
