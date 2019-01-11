@@ -55,7 +55,6 @@
 		80F9D5A121E72C1100BA30A8 = {
 			isa = PBXGroup;
 			children = (
-				80F9D5BF21E72C5700BA30A8 /* base.swift */,
 				80F9D5AC21E72C1100BA30A8 /* Easters 2019 Clock */,
 				80F9D5DC21E7544700BA30A8 /* Frameworks */,
 				80F9D5AB21E72C1100BA30A8 /* Products */,
@@ -74,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				80F9D5EE21E7554C00BA30A8 /* Easters 2019 Clock.entitlements */,
+				80F9D5BF21E72C5700BA30A8 /* base.swift */,
 				80F9D5AD21E72C1100BA30A8 /* AppDelegate.swift */,
 				80F9D5AF21E72C1100BA30A8 /* ViewController.swift */,
 				80F9D5B121E72C1100BA30A8 /* Main.storyboard */,
