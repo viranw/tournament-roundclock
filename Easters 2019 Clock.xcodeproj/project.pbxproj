@@ -16,6 +16,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		8011F07A21E85D2400B489DA /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		80F9D5EC21E7544700BA30A8 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -103,6 +113,7 @@
 				80F9D5A721E72C1100BA30A8 /* Frameworks */,
 				80F9D5A821E72C1100BA30A8 /* Resources */,
 				80F9D5EC21E7544700BA30A8 /* Embed App Extensions */,
+				8011F07A21E85D2400B489DA /* Embed Watch Content */,
 			);
 			buildRules = (
 			);

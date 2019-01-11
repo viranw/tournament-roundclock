@@ -57,7 +57,8 @@ class ViewController: UIViewController {
             }
         }
         
-       updateRoundOptions()
+        updateRoundOptions()
+        updateConfirmButtonState()
         
         
         timerLabel.text = ""
@@ -65,8 +66,6 @@ class ViewController: UIViewController {
         
         confirmButton.layer.cornerRadius = 10.0
         confirmButton.clipsToBounds = true
-        confirmButton.layer.backgroundColor = UIColor.green.cgColor
-        confirmButton.setTitleColor(UIColor.white, for: .normal)
         
         
         
@@ -127,8 +126,6 @@ class ViewController: UIViewController {
             confirmButton.setTitleColor(UIColor.white, for: .normal)
             confirmButton.isUserInteractionEnabled = false
         }
-        
-        
     }
     
     @IBAction func roundChanged(_ sender: Any) {
@@ -137,55 +134,70 @@ class ViewController: UIViewController {
             if round.day == daySelector.selectedSegmentIndex && round.dayInd == roundSelector.selectedSegmentIndex {
                 selectedRound = round
             }
-            updateSwitchButtonState()
         }
-        
         updateConfirmButtonState()
-        
     }
     
     func updateConfirmButtonState() {
+        var isEnabled:Bool = true
+        
         if let dr = displayRound {
             if selectedRound == dr {
-                confirmButton.backgroundColor = UIColor.gray
-                confirmButton.setTitleColor(UIColor.white, for: .normal)
-                confirmButton.isUserInteractionEnabled = false
+                isEnabled = false
             } else {
-                confirmButton.backgroundColor = UIColor.green
-                confirmButton.setTitleColor(UIColor.white, for: .normal)
-                confirmButton.isUserInteractionEnabled = true
+                isEnabled = true
             }
         } else {
+            if roundSelector.selectedSegmentIndex == -1 {
+                isEnabled = false
+            } else {
+                isEnabled = true
+            }
+        }
+        
+        if isEnabled {
             confirmButton.backgroundColor = UIColor.green
             confirmButton.setTitleColor(UIColor.white, for: .normal)
             confirmButton.isUserInteractionEnabled = true
+        } else {
+            confirmButton.backgroundColor = UIColor.gray
+            confirmButton.setTitleColor(UIColor.white, for: .normal)
+            confirmButton.isUserInteractionEnabled = false
         }
     }
     
     @IBAction func roundChangedConfirm(_ sender: Any) {
-        displayRound = selectedRound
-        let sched = DateFormatter.localizedString(from: selectedRound!.sched, dateStyle: .none, timeStyle: .short)
-        roundLabel.text = "\(selectedRound!.label_long) - Scheduled \(sched)"
-        save()
-    }
+        if roundSelector.selectedSegmentIndex != -1 {
+            displayRound = selectedRound
+            let sched = DateFormatter.localizedString(from: selectedRound!.sched, dateStyle: .none, timeStyle: .short)
+            
+            print(UIDevice().model)
+            let testString1 = "\(selectedRound!.label_long) - Scheduled \(sched)"
+            let testString2 = "\(selectedRound!.label_long) - \(sched)"
     
-    func updateSwitchButtonState() {
-        if displayRound == nil {
-            confirmButton.layer.backgroundColor = UIColor.green.cgColor
-            confirmButton.isUserInteractionEnabled = true
-        } else if selectedRound == displayRound! {
-            confirmButton.layer.backgroundColor = UIColor.lightGray.cgColor
-            confirmButton.isUserInteractionEnabled = false
-        } else {
-            confirmButton.layer.backgroundColor = UIColor.green.cgColor
-            confirmButton.isUserInteractionEnabled = true
+            if UIDevice().model == "iPhone" {
+                // Both long
+                if testString1.count > 18 && testString2.count > 18 {
+                    roundLabel.text = "\(selectedRound!.label_short) - \(sched)"
+                    
+                    // String 1 is long, but 2 is OK
+                } else if testString1.count > 18 && testString2.count <= 18 {
+                    roundLabel.text = "\(selectedRound!.label_long) - \(sched)"
+                    
+                } else {
+                    roundLabel.text = "\(selectedRound!.label_long) - Scheduled \(sched)"
+                    
+                }
+                
+                
+            } else {
+                roundLabel.text = "\(selectedRound!.label_long) - Scheduled \(sched)"
+            }
+
+            save()
         }
-    }
-    
-    func resetTimer() {
         
     }
-
     
     @objc func updateTimer() {
         var prefix = ""
