@@ -120,7 +120,13 @@ class ViewController: UIViewController {
     @IBAction func dayChanged(_ sender: Any) {
 
         updateRoundOptions()
+        updateConfirmButtonState()
         
+        if roundSelector.selectedSegmentIndex == -1 {
+            confirmButton.backgroundColor = UIColor.gray
+            confirmButton.setTitleColor(UIColor.white, for: .normal)
+            confirmButton.isUserInteractionEnabled = false
+        }
         
         
     }
@@ -132,6 +138,27 @@ class ViewController: UIViewController {
                 selectedRound = round
             }
             updateSwitchButtonState()
+        }
+        
+        updateConfirmButtonState()
+        
+    }
+    
+    func updateConfirmButtonState() {
+        if let dr = displayRound {
+            if selectedRound == dr {
+                confirmButton.backgroundColor = UIColor.gray
+                confirmButton.setTitleColor(UIColor.white, for: .normal)
+                confirmButton.isUserInteractionEnabled = false
+            } else {
+                confirmButton.backgroundColor = UIColor.green
+                confirmButton.setTitleColor(UIColor.white, for: .normal)
+                confirmButton.isUserInteractionEnabled = true
+            }
+        } else {
+            confirmButton.backgroundColor = UIColor.green
+            confirmButton.setTitleColor(UIColor.white, for: .normal)
+            confirmButton.isUserInteractionEnabled = true
         }
     }
     
@@ -191,6 +218,7 @@ class ViewController: UIViewController {
 
             
             timerLabel.text = "\(prefix) \(hstring):\(mstring)"
+            updateConfirmButtonState()
         }
         
        
