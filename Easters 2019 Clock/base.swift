@@ -228,7 +228,7 @@ func initialBuild() {
                                                                 month: 1,
                                                                 day: 11,
                                                                 hour: 19,
-                                                                minute: 0,
+                                                                minute: 2,
                                                                 second: 0))!))
     
     

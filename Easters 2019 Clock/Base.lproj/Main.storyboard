@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_5" orientation="landscape">
+    <device id="ipad12_9rounded" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,23 +15,26 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Easters_2019_Clock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Zdi-ya-NMW">
-                                <rect key="frame" x="32" y="94" width="350" height="140"/>
+                                <rect key="frame" x="225.5" y="74" width="915" height="95"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="WpZ-hh-00c">
-                                        <rect key="frame" x="0.0" y="0.0" width="350" height="95"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="800" height="95"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Dap-R3-OIY">
-                                                <rect key="frame" x="0.0" y="0.0" width="350" height="41"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="800" height="41"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="1300" id="az7-cA-kFY">
+                                                        <variation key="heightClass=compact-widthClass=regular" constant="300"/>
                                                         <variation key="heightClass=regular-widthClass=compact" constant="350"/>
                                                         <variation key="heightClass=regular-widthClass=regular" constant="800"/>
                                                     </constraint>
-                                                    <constraint firstAttribute="height" constant="40" id="vVt-qT-Nrm"/>
+                                                    <constraint firstAttribute="height" constant="40" id="vVt-qT-Nrm">
+                                                        <variation key="heightClass=compact-widthClass=regular" constant="40"/>
+                                                    </constraint>
                                                 </constraints>
                                                 <segments>
                                                     <segment title="First"/>
@@ -42,10 +45,13 @@
                                                 </connections>
                                             </segmentedControl>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vn7-oY-KG0">
-                                                <rect key="frame" x="0.0" y="55" width="350" height="41"/>
+                                                <rect key="frame" x="0.0" y="55" width="800" height="41"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="I6g-Bs-ZOL"/>
+                                                    <constraint firstAttribute="height" constant="40" id="I6g-Bs-ZOL">
+                                                        <variation key="heightClass=compact-widthClass=regular" constant="40"/>
+                                                    </constraint>
                                                     <constraint firstAttribute="width" constant="1300" id="jou-xU-x9I">
+                                                        <variation key="heightClass=compact-widthClass=regular" constant="300"/>
                                                         <variation key="heightClass=regular-widthClass=compact" constant="350"/>
                                                         <variation key="heightClass=regular-widthClass=regular" constant="800"/>
                                                     </constraint>
@@ -60,13 +66,17 @@
                                             </segmentedControl>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="95" id="W93-uS-F25"/>
+                                            <constraint firstAttribute="height" constant="95" id="W93-uS-F25">
+                                                <variation key="heightClass=compact-widthClass=regular" constant="40"/>
+                                            </constraint>
                                         </constraints>
+                                        <variation key="heightClass=compact-widthClass=regular" axis="horizontal" spacing="5"/>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJO-6g-Ta7">
-                                        <rect key="frame" x="0.0" y="110" width="350" height="30"/>
+                                        <rect key="frame" x="815" y="0.0" width="100" height="95"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="95" id="23b-KR-YWJ">
+                                                <variation key="heightClass=compact-widthClass=regular" constant="40"/>
                                                 <variation key="heightClass=regular-widthClass=compact" constant="30"/>
                                             </constraint>
                                             <constraint firstAttribute="width" constant="100" id="xDI-Wa-bzI">
@@ -82,25 +92,30 @@
                                 <variation key="heightClass=regular-widthClass=compact" axis="vertical"/>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+88:88" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4eC-A6-AYn">
-                                <rect key="frame" x="44.333333333333343" y="388.33333333333331" width="325.66666666666663" height="119.66666666666669"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="350"/>
+                                <rect key="frame" x="202.5" y="345" width="961" height="334.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="350"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact-widthClass=regular">
+                                    <fontDescription key="fontDescription" type="system" pointSize="150"/>
+                                </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <fontDescription key="fontDescription" type="system" pointSize="100"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
-                                    <fontDescription key="fontDescription" type="system" pointSize="280"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="280"/>
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8L9-XJ-OcH">
-                                <rect key="frame" x="24" y="537" width="350" height="300"/>
+                                <rect key="frame" x="1176" y="829" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="2KH-tj-nMb">
+                                        <variation key="heightClass=compact-widthClass=regular" constant="700"/>
                                         <variation key="heightClass=regular-widthClass=compact" constant="350"/>
                                         <variation key="heightClass=regular-widthClass=regular" constant="150"/>
                                     </constraint>
                                     <constraint firstAttribute="height" constant="200" id="HzH-Lh-Uru">
+                                        <variation key="heightClass=compact-widthClass=regular" constant="100"/>
                                         <variation key="heightClass=regular-widthClass=compact" constant="300"/>
                                         <variation key="heightClass=regular-widthClass=regular" constant="150"/>
                                     </constraint>
@@ -111,45 +126,58 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="VeA-t2-Q31">
-                                <rect key="frame" x="32" y="740.33333333333337" width="350" height="71.666666666666629"/>
+                                <rect key="frame" x="183" y="875" width="1000" height="79"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+88:88" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRm-xP-emC">
-                                        <rect key="frame" x="0.0" y="0.0" width="350" height="28.666666666666668"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1000" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="1000" id="Rog-C5-ns4">
+                                                <variation key="heightClass=compact-widthClass=regular" constant="500"/>
                                                 <variation key="heightClass=regular-widthClass=compact" constant="350"/>
                                             </constraint>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="36"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=compact-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
+                                        </variation>
                                         <variation key="heightClass=regular-widthClass=compact">
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+88:88" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="054-Wp-EMU">
-                                        <rect key="frame" x="0.0" y="35.666666666666629" width="350" height="36"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The time now is 88:88:88pm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="054-Wp-EMU">
+                                        <rect key="frame" x="0.0" y="50" width="1000" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="1000" id="LEV-YY-MXZ">
+                                                <variation key="heightClass=compact-widthClass=regular" constant="300"/>
                                                 <variation key="heightClass=regular-widthClass=compact" constant="350"/>
                                             </constraint>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=compact-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="24"/>
+                                        </variation>
                                         <variation key="heightClass=regular-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" weight="thin" pointSize="24"/>
                                         </variation>
                                     </label>
                                 </subviews>
+                                <variation key="heightClass=compact-widthClass=regular" axis="horizontal" spacing="21"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="VeA-t2-Q31" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5Ly-Uc-cGT"/>
                             <constraint firstItem="4eC-A6-AYn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="AR1-3S-IFu"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VeA-t2-Q31" secondAttribute="bottom" constant="50" id="ECg-nq-z9T"/>
-                            <constraint firstItem="Zdi-ya-NMW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="OrU-zu-ioa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VeA-t2-Q31" secondAttribute="bottom" constant="50" id="ECg-nq-z9T">
+                                <variation key="heightClass=compact-widthClass=regular" constant="10"/>
+                            </constraint>
+                            <constraint firstItem="Zdi-ya-NMW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="OrU-zu-ioa">
+                                <variation key="heightClass=compact-widthClass=regular" constant="20"/>
+                            </constraint>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8L9-XJ-OcH" secondAttribute="trailing" constant="40" id="ZBz-fx-orm"/>
                             <constraint firstItem="4eC-A6-AYn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ia2-uw-t4e"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8L9-XJ-OcH" secondAttribute="bottom" constant="25" id="nUG-vJ-gAP"/>
@@ -163,6 +191,7 @@
                         <outlet property="roundLabel" destination="eRm-xP-emC" id="11t-KO-4JQ"/>
                         <outlet property="roundSelector" destination="vn7-oY-KG0" id="gJc-T8-TnZ"/>
                         <outlet property="switchStack" destination="Zdi-ya-NMW" id="uoK-hX-C4C"/>
+                        <outlet property="timeLabelCentreY" destination="AR1-3S-IFu" id="P7V-oQ-gLb"/>
                         <outlet property="timeNowLabel" destination="054-Wp-EMU" id="pE9-sw-aQP"/>
                         <outlet property="timerLabel" destination="4eC-A6-AYn" id="AZS-E1-U2J"/>
                         <outlet property="updateButton" destination="8L9-XJ-OcH" id="Zj0-tl-K7X"/>

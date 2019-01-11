@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var timeNowLabel: UILabel!
     @IBOutlet weak var updateButton: UIButton!
     @IBOutlet weak var roundLabel: UILabel!
+    @IBOutlet weak var timeLabelCentreY: NSLayoutConstraint!
     
     @IBOutlet weak var switchStack: UIStackView!
   
@@ -66,6 +67,12 @@ class ViewController: UIViewController {
         
         confirmButton.layer.cornerRadius = 10.0
         confirmButton.clipsToBounds = true
+        
+        if UIDevice().model == "iPhone" && (UIDevice().orientation == .landscapeLeft || UIDevice().orientation == .landscapeLeft) {
+            roundLabel.textAlignment = .left
+        } else {
+            roundLabel.textAlignment = .center
+        }
         
         
         
@@ -166,12 +173,19 @@ class ViewController: UIViewController {
         }
     }
     
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+        if UIDevice().model == "iPhone" && (UIDevice().orientation == .landscapeLeft || UIDevice().orientation == .landscapeLeft) {
+            roundLabel.textAlignment = .left
+        } else {
+            roundLabel.textAlignment = .center
+        }
+    }
+    
     @IBAction func roundChangedConfirm(_ sender: Any) {
         if roundSelector.selectedSegmentIndex != -1 {
             displayRound = selectedRound
             let sched = DateFormatter.localizedString(from: selectedRound!.sched, dateStyle: .none, timeStyle: .short)
             
-            print(UIDevice().model)
             let testString1 = "\(selectedRound!.label_long) - Scheduled \(sched)"
             let testString2 = "\(selectedRound!.label_long) - \(sched)"
     
@@ -218,12 +232,18 @@ class ViewController: UIViewController {
             let interval2 = Int(interval1)
             let s = interval2 % 60
             var m = (interval2/60) % 60
-            let h = (interval2/3600)
+            var h = (interval2/3600)
             
             if s >= 0 && !intervalisnegative { m += 1 }
             
             var mstring = ""
             var hstring = ""
+            
+            //Weird top-of-the-hour bug
+            if m == 60 {
+                m = 0
+                h += 1
+            }
             
             if m < 10 { mstring = "0\(m)" } else { mstring = String(m)}
             if h < 10 { hstring = "0\(h)" } else { hstring = String(h)}
@@ -244,7 +264,16 @@ class ViewController: UIViewController {
     }
 
     @IBAction func toggleSwitcher(_ sender: Any) {
+        let stackDimensions = switchStack.frame.size
+        let stackHeight = stackDimensions.height * -0.5
+        
+        if switchStack.isHidden {
+            timeLabelCentreY.constant = 0.0
+        } else {
+            timeLabelCentreY.constant = stackHeight
+        }
         switchStack.isHidden = !switchStack.isHidden
+        
         
     }
 }
