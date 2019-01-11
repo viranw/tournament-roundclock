@@ -107,17 +107,17 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8L9-XJ-OcH">
-                                <rect key="frame" x="1176" y="829" width="150" height="150"/>
+                                <rect key="frame" x="51" y="779" width="1275" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="2KH-tj-nMb">
                                         <variation key="heightClass=compact-widthClass=regular" constant="700"/>
                                         <variation key="heightClass=regular-widthClass=compact" constant="350"/>
-                                        <variation key="heightClass=regular-widthClass=regular" constant="150"/>
+                                        <variation key="heightClass=regular-widthClass=regular" constant="1275"/>
                                     </constraint>
                                     <constraint firstAttribute="height" constant="200" id="HzH-Lh-Uru">
                                         <variation key="heightClass=compact-widthClass=regular" constant="100"/>
                                         <variation key="heightClass=regular-widthClass=compact" constant="300"/>
-                                        <variation key="heightClass=regular-widthClass=regular" constant="150"/>
+                                        <variation key="heightClass=regular-widthClass=regular" constant="200"/>
                                     </constraint>
                                 </constraints>
                                 <state key="normal" title="Button"/>

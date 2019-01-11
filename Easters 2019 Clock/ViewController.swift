@@ -68,7 +68,7 @@ class ViewController: UIViewController {
         confirmButton.layer.cornerRadius = 10.0
         confirmButton.clipsToBounds = true
         
-        if UIDevice().model == "iPhone" && (UIDevice().orientation == .landscapeLeft || UIDevice().orientation == .landscapeLeft) {
+        if UIDevice().model == "iPhone" && UIDevice().orientation.isLandscape {
             roundLabel.textAlignment = .left
         } else {
             roundLabel.textAlignment = .center
@@ -174,7 +174,7 @@ class ViewController: UIViewController {
     }
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
-        if UIDevice().model == "iPhone" && (UIDevice().orientation == .landscapeLeft || UIDevice().orientation == .landscapeLeft) {
+        if UIDevice().model == "iPhone" && UIDevice().orientation.isLandscape {
             roundLabel.textAlignment = .left
         } else {
             roundLabel.textAlignment = .center
