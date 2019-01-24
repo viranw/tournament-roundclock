@@ -36,8 +36,10 @@ class ViewController: UIViewController {
         
         updateButton.setTitle("", for: .normal)
         
+        let defaults = UserDefaults.standard
         
-        if let savedRounds = appDefaults?.object(forKey: "displayRound") as? Data {
+        
+        if let savedRounds = defaults.object(forKey: "displayRound") as? Data {
             let jsonDecoder = JSONDecoder()
             do {
                 displayRound = try jsonDecoder.decode(round.self, from: savedRounds)
