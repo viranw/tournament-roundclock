@@ -39,7 +39,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		80F9D5AA21E72C1100BA30A8 /* Easters 2019 Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Easters 2019 Clock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		80F9D5AA21E72C1100BA30A8 /* Tournament Round Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tournament Round Clock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80F9D5AD21E72C1100BA30A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80F9D5AF21E72C1100BA30A8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		80F9D5B221E72C1100BA30A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 		80F9D5AB21E72C1100BA30A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				80F9D5AA21E72C1100BA30A8 /* Easters 2019 Clock.app */,
+				80F9D5AA21E72C1100BA30A8 /* Tournament Round Clock.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,9 +103,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		80F9D5A921E72C1100BA30A8 /* Easters 2019 Clock */ = {
+		80F9D5A921E72C1100BA30A8 /* Tournament Round Clock */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 80F9D5BC21E72C1400BA30A8 /* Build configuration list for PBXNativeTarget "Easters 2019 Clock" */;
+			buildConfigurationList = 80F9D5BC21E72C1400BA30A8 /* Build configuration list for PBXNativeTarget "Tournament Round Clock" */;
 			buildPhases = (
 				80F9D5A621E72C1100BA30A8 /* Sources */,
 				80F9D5A721E72C1100BA30A8 /* Frameworks */,
@@ -117,9 +117,9 @@
 			);
 			dependencies = (
 			);
-			name = "Easters 2019 Clock";
+			name = "Tournament Round Clock";
 			productName = "Easters 2019 Clock";
-			productReference = 80F9D5AA21E72C1100BA30A8 /* Easters 2019 Clock.app */;
+			productReference = 80F9D5AA21E72C1100BA30A8 /* Tournament Round Clock.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -155,7 +155,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				80F9D5A921E72C1100BA30A8 /* Easters 2019 Clock */,
+				80F9D5A921E72C1100BA30A8 /* Tournament Round Clock */,
 			);
 		};
 /* End PBXProject section */
@@ -333,7 +333,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "viranweerasekera.Easters-2019-Clock";
+				PRODUCT_BUNDLE_IDENTIFIER = "viranweerasekera.Tournament-RoundClock";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -351,7 +351,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "viranweerasekera.Easters-2019-Clock";
+				PRODUCT_BUNDLE_IDENTIFIER = "viranweerasekera.Tournament-RoundClock";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -370,7 +370,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		80F9D5BC21E72C1400BA30A8 /* Build configuration list for PBXNativeTarget "Easters 2019 Clock" */ = {
+		80F9D5BC21E72C1400BA30A8 /* Build configuration list for PBXNativeTarget "Tournament Round Clock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				80F9D5BD21E72C1400BA30A8 /* Debug */,
