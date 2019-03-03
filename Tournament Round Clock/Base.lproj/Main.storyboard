@@ -107,19 +107,7 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8L9-XJ-OcH">
-                                <rect key="frame" x="51" y="779" width="1275" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="2KH-tj-nMb">
-                                        <variation key="heightClass=compact-widthClass=regular" constant="700"/>
-                                        <variation key="heightClass=regular-widthClass=compact" constant="350"/>
-                                        <variation key="heightClass=regular-widthClass=regular" constant="1275"/>
-                                    </constraint>
-                                    <constraint firstAttribute="height" constant="200" id="HzH-Lh-Uru">
-                                        <variation key="heightClass=compact-widthClass=regular" constant="100"/>
-                                        <variation key="heightClass=regular-widthClass=compact" constant="300"/>
-                                        <variation key="heightClass=regular-widthClass=regular" constant="200"/>
-                                    </constraint>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="679.5" width="1326" height="299.5"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="toggleSwitcher:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lKH-Rz-5eZ"/>
@@ -154,14 +142,14 @@
                                                 <variation key="heightClass=regular-widthClass=compact" constant="350"/>
                                             </constraint>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="35"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="35"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=compact-widthClass=regular">
-                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
                                         </variation>
                                         <variation key="heightClass=regular-widthClass=regular">
-                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="31"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="31"/>
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The time now is 88:88:88pm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LhV-3u-IqZ">
@@ -188,11 +176,15 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="8L9-XJ-OcH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3rY-HY-NLo"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8L9-XJ-OcH" secondAttribute="bottom" id="4S5-gj-xjp"/>
                             <constraint firstItem="VeA-t2-Q31" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5Ly-Uc-cGT"/>
                             <constraint firstItem="4eC-A6-AYn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="AR1-3S-IFu"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VeA-t2-Q31" secondAttribute="bottom" constant="50" id="ECg-nq-z9T">
                                 <variation key="heightClass=compact-widthClass=regular" constant="10"/>
                             </constraint>
+                            <constraint firstItem="8L9-XJ-OcH" firstAttribute="top" secondItem="4eC-A6-AYn" secondAttribute="bottom" id="Ieu-hr-0az"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8L9-XJ-OcH" secondAttribute="trailing" id="OBo-ef-ExN"/>
                             <constraint firstItem="Zdi-ya-NMW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="OrU-zu-ioa">
                                 <variation key="heightClass=compact-widthClass=regular" constant="20"/>
                             </constraint>
