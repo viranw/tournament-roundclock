@@ -9,7 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var dsLabel: UILabel!
+    
     @IBOutlet weak var daySelector: UISegmentedControl!
     @IBOutlet weak var roundSelector: UISegmentedControl!
     @IBOutlet weak var confirmButton: UIButton!
@@ -36,8 +37,10 @@ class ViewController: UIViewController {
         
         updateButton.setTitle("", for: .normal)
         
+        let defaults = UserDefaults.standard
         
-        if let savedRounds = appDefaults?.object(forKey: "displayRound") as? Data {
+        
+        if let savedRounds = defaults.object(forKey: "displayRound") as? Data {
             let jsonDecoder = JSONDecoder()
             do {
                 displayRound = try jsonDecoder.decode(round.self, from: savedRounds)
@@ -259,7 +262,10 @@ class ViewController: UIViewController {
     
     @objc func updateCurrentTime() {
         let now = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .medium)
+        let sDate = Date.init(timeIntervalSinceNow: 1800)
+        let s = DateFormatter.localizedString(from: sDate, dateStyle: .none, timeStyle: .medium)
         timeNowLabel.text = "The time now is \(now)"
+        dsLabel.text = "+30 Minutes: \(s)"
         
     }
 
