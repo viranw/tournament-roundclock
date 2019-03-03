@@ -44,10 +44,10 @@ func initialBuild() {
                            dayInd: 0,
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
-                                                                month: 2,
-                                                                day: 9,
+                                                                month: 3,
+                                                                day: 2,
                                                                 hour: 10,
-                                                                minute: 0,
+                                                                minute: 30,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Round 2",
@@ -56,10 +56,10 @@ func initialBuild() {
                            dayInd: 1,
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
-                                                                month: 2,
-                                                                day: 9,
+                                                                month: 3,
+                                                                day: 2,
                                                                 hour: 13,
-                                                                minute: 15,
+                                                                minute: 30,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Round 3",
@@ -68,8 +68,8 @@ func initialBuild() {
                            dayInd: 2,
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
-                                                                month: 2,
-                                                                day: 9,
+                                                                month: 3,
+                                                                day: 2,
                                                                 hour: 16,
                                                                 minute: 0,
                                                                 second: 0))!))
@@ -80,8 +80,8 @@ func initialBuild() {
                           dayInd: 0,
                           sched: cal.date(from: DateComponents(timeZone: tz,
                                                                year: 2019,
-                                                               month: 2,
-                                                               day: 10,
+                                                               month: 3,
+                                                               day: 3,
                                                                hour: 10,
                                                                minute: 0,
                                                                second: 0))!))
@@ -92,8 +92,8 @@ func initialBuild() {
                            dayInd: 1,
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
-                                                                month: 2,
-                                                                day: 10,
+                                                                month: 3,
+                                                                day: 3,
                                                                 hour: 12,
                                                                 minute: 30,
                                                                 second: 0))!))
