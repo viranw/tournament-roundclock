@@ -106,8 +106,9 @@
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="280"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8L9-XJ-OcH">
-                                <rect key="frame" x="0.0" y="679.5" width="1326" height="299.5"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8L9-XJ-OcH">
+                                <rect key="frame" x="0.0" y="688" width="1366" height="338"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="toggleSwitcher:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lKH-Rz-5eZ"/>
