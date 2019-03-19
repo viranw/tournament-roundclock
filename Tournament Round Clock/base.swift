@@ -16,7 +16,7 @@ let cal = Calendar(identifier: .gregorian)
 
 
 var tz = TimeZone(identifier: "Australia/Sydney")
-var dayLabels:[Int:String] = [0:"Saturday", 1:"Sunday"]
+var dayLabels:[Int:String] = [0:"Friday", 1:"Saturday", 2:"Sunday"]
 
 class round: NSObject, Codable {
     var label_long:String
@@ -44,9 +44,9 @@ func initialBuild() {
                            dayInd: 0,
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
-                                                                month: 3,
-                                                                day: 9,
-                                                                hour: 9,
+                                                                month: 4,
+                                                                day: 19,
+                                                                hour: 10,
                                                                 minute: 0,
                                                                 second: 0))!))
     
@@ -56,8 +56,8 @@ func initialBuild() {
                            dayInd: 1,
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
-                                                                month: 3,
-                                                                day: 9,
+                                                                month: 4,
+                                                                day: 19,
                                                                 hour: 13,
                                                                 minute: 0,
                                                                 second: 0))!))
@@ -68,10 +68,10 @@ func initialBuild() {
                            dayInd: 2,
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
-                                                                month: 3,
-                                                                day: 9,
-                                                                hour: 15,
-                                                                minute: 30,
+                                                                month: 4,
+                                                                day: 19,
+                                                                hour: 16,
+                                                                minute: 0,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Round 4",
@@ -80,10 +80,10 @@ func initialBuild() {
                           dayInd: 0,
                           sched: cal.date(from: DateComponents(timeZone: tz,
                                                                year: 2019,
-                                                               month: 3,
-                                                               day: 10,
+                                                               month: 4,
+                                                               day: 20,
                                                                hour: 9,
-                                                               minute: 30,
+                                                               minute: 15,
                                                                second: 0))!))
     
     allRounds.append(round(label_long: "Round 5",
@@ -92,34 +92,70 @@ func initialBuild() {
                            dayInd: 1,
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
-                                                                month: 3,
-                                                                day: 10,
+                                                                month: 4,
+                                                                day: 20,
                                                                 hour: 13,
-                                                                minute: 0,
+                                                                minute: 15,
                                                                 second: 0))!))
     
-    allRounds.append(round(label_long: "Semifinals",
-                           label_short: "SF",
+    allRounds.append(round(label_long: "Round 6",
+                           label_short: "R6",
                            day: 1,
                            dayInd: 2,
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
-                                                                month: 3,
-                                                                day: 10,
-                                                                hour: 15,
-                                                                minute: 0,
+                                                                month: 4,
+                                                                day: 20,
+                                                                hour: 16,
+                                                                minute: 30,
+                                                                second: 0))!))
+    
+    allRounds.append(round(label_long: "Octofinals",
+                           label_short: "OF",
+                           day: 2,
+                           dayInd: 0,
+                           sched: cal.date(from: DateComponents(timeZone: tz,
+                                                                year: 2019,
+                                                                month: 4,
+                                                                day: 21,
+                                                                hour: 9,
+                                                                minute: 15,
+                                                                second: 0))!))
+    
+    allRounds.append(round(label_long: "Quarterfinals",
+                           label_short: "QF",
+                           day: 2,
+                           dayInd: 1,
+                           sched: cal.date(from: DateComponents(timeZone: tz,
+                                                                year: 2019,
+                                                                month: 4,
+                                                                day: 21,
+                                                                hour: 11,
+                                                                minute: 45,
+                                                                second: 0))!))
+    
+    allRounds.append(round(label_long: "Semifinals",
+                           label_short: "SF",
+                           day: 2,
+                           dayInd: 2,
+                           sched: cal.date(from: DateComponents(timeZone: tz,
+                                                                year: 2019,
+                                                                month: 4,
+                                                                day: 21,
+                                                                hour: 14,
+                                                                minute: 30,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Grand Final",
                            label_short: "GF",
-                           day: 1,
+                           day: 2,
                            dayInd: 3,
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
-                                                                month: 3,
-                                                                day: 10,
-                                                                hour: 17,
-                                                                minute: 0,
+                                                                month: 4,
+                                                                day: 21,
+                                                                hour: 19,
+                                                                minute: 30,
                                                                 second: 0))!))
     
     
