@@ -44,10 +44,10 @@ func initialBuild() {
                            dayInd: 0,
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
-                                                                month: 3,
-                                                                day: 2,
+                                                                month: 4,
+                                                                day: 6,
                                                                 hour: 10,
-                                                                minute: 30,
+                                                                minute: 0,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Round 2",
@@ -56,10 +56,10 @@ func initialBuild() {
                            dayInd: 1,
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
-                                                                month: 3,
-                                                                day: 2,
+                                                                month: 4,
+                                                                day: 6,
                                                                 hour: 13,
-                                                                minute: 30,
+                                                                minute: 0,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Round 3",
@@ -68,10 +68,10 @@ func initialBuild() {
                            dayInd: 2,
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
-                                                                month: 3,
-                                                                day: 2,
-                                                                hour: 16,
-                                                                minute: 0,
+                                                                month: 4,
+                                                                day: 6,
+                                                                hour: 15,
+                                                                minute: 30,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Round 4",
@@ -80,9 +80,9 @@ func initialBuild() {
                           dayInd: 0,
                           sched: cal.date(from: DateComponents(timeZone: tz,
                                                                year: 2019,
-                                                               month: 3,
-                                                               day: 3,
-                                                               hour: 10,
+                                                               month: 4,
+                                                               day: 7,
+                                                               hour: 9,
                                                                minute: 0,
                                                                second: 0))!))
     
@@ -92,10 +92,10 @@ func initialBuild() {
                            dayInd: 1,
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
-                                                                month: 3,
-                                                                day: 3,
+                                                                month: 4,
+                                                                day: 7,
                                                                 hour: 12,
-                                                                minute: 30,
+                                                                minute: 0,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Semifinals",
@@ -104,9 +104,9 @@ func initialBuild() {
                            dayInd: 2,
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
-                                                                month: 3,
-                                                                day: 3,
-                                                                hour: 15,
+                                                                month: 4,
+                                                                day: 7,
+                                                                hour: 14,
                                                                 minute: 30,
                                                                 second: 0))!))
     
@@ -116,9 +116,9 @@ func initialBuild() {
                            dayInd: 3,
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
-                                                                month: 3,
-                                                                day: 3,
-                                                                hour: 17,
+                                                                month: 4,
+                                                                day: 7,
+                                                                hour: 16,
                                                                 minute: 0,
                                                                 second: 0))!))
     
