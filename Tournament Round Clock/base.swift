@@ -59,7 +59,7 @@ func initialBuild() {
                                                                 month: 4,
                                                                 day: 19,
                                                                 hour: 13,
-                                                                minute: 0,
+                                                                minute: 30,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Round 3",
@@ -71,7 +71,7 @@ func initialBuild() {
                                                                 month: 4,
                                                                 day: 19,
                                                                 hour: 16,
-                                                                minute: 0,
+                                                                minute: 30,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Round 4",
@@ -83,7 +83,7 @@ func initialBuild() {
                                                                month: 4,
                                                                day: 20,
                                                                hour: 9,
-                                                               minute: 15,
+                                                               minute: 0,
                                                                second: 0))!))
     
     allRounds.append(round(label_long: "Round 5",
@@ -95,7 +95,7 @@ func initialBuild() {
                                                                 month: 4,
                                                                 day: 20,
                                                                 hour: 13,
-                                                                minute: 15,
+                                                                minute: 30,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Round 6",
@@ -119,7 +119,7 @@ func initialBuild() {
                                                                 month: 4,
                                                                 day: 21,
                                                                 hour: 9,
-                                                                minute: 15,
+                                                                minute: 0,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Quarterfinals",
@@ -130,8 +130,8 @@ func initialBuild() {
                                                                 year: 2019,
                                                                 month: 4,
                                                                 day: 21,
-                                                                hour: 11,
-                                                                minute: 45,
+                                                                hour: 12,
+                                                                minute: 0,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Semifinals",
@@ -142,8 +142,8 @@ func initialBuild() {
                                                                 year: 2019,
                                                                 month: 4,
                                                                 day: 21,
-                                                                hour: 14,
-                                                                minute: 30,
+                                                                hour: 15,
+                                                                minute: 0,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Grand Final",
