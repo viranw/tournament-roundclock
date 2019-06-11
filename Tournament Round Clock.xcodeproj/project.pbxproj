@@ -39,6 +39,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8086428322A7B02800226057 /* Tournament Round Clock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tournament Round Clock.entitlements"; sourceTree = "<group>"; };
 		80F9D5AA21E72C1100BA30A8 /* Tournament Round Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tournament Round Clock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80F9D5AD21E72C1100BA30A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80F9D5AF21E72C1100BA30A8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +82,7 @@
 		80F9D5AC21E72C1100BA30A8 /* Tournament Round Clock */ = {
 			isa = PBXGroup;
 			children = (
+				8086428322A7B02800226057 /* Tournament Round Clock.entitlements */,
 				80F9D5BF21E72C5700BA30A8 /* base.swift */,
 				80F9D5AD21E72C1100BA30A8 /* AppDelegate.swift */,
 				80F9D5AF21E72C1100BA30A8 /* ViewController.swift */,
@@ -326,15 +328,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Tournament Round Clock/Tournament Round Clock.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_UIKITFORMAC_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = CLBZ63D7ZK;
 				INFOPLIST_FILE = "$(SRCROOT)/Tournament Round Clock/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "viranweerasekera.CDC-RoundClock";
+				PRODUCT_BUNDLE_IDENTIFIER = "viranweerasekera.UTSOpen-RoundClock";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_UIKITFORMAC = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -344,15 +352,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Tournament Round Clock/Tournament Round Clock.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_UIKITFORMAC_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = CLBZ63D7ZK;
 				INFOPLIST_FILE = "$(SRCROOT)/Tournament Round Clock/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "viranweerasekera.CDC-RoundClock";
+				PRODUCT_BUNDLE_IDENTIFIER = "viranweerasekera.UTSOpen-RoundClock";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_UIKITFORMAC = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
