@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.13"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="iOS 13.0 system colors" minToolsVersion="11.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -92,6 +93,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+88:88" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4eC-A6-AYn">
                                 <rect key="frame" x="202.5" y="345" width="961" height="334.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="350"/>
+                                <color key="textColor" cocoaTouchSystemColor="systemYellowColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=compact-widthClass=regular">
                                     <fontDescription key="fontDescription" type="system" pointSize="150"/>
@@ -116,6 +118,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+88:88" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRm-xP-emC">
                                         <rect key="frame" x="0.0" y="0.0" width="1166" height="43"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="36"/>
+                                        <color key="textColor" cocoaTouchSystemColor="systemBlueColor"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=compact-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
@@ -127,6 +130,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The time now is 88:88:88pm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="054-Wp-EMU">
                                         <rect key="frame" x="0.0" y="50" width="1166" height="37"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="35"/>
+                                        <color key="textColor" cocoaTouchSystemColor="systemPinkColor"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=compact-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
@@ -138,6 +142,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The time now is 88:88:88pm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LhV-3u-IqZ">
                                         <rect key="frame" x="0.0" y="94" width="1166" height="29"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
+                                        <color key="textColor" cocoaTouchSystemColor="systemPinkColor"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=compact-widthClass=regular">
                                             <fontDescription key="fontDescription" type="system" weight="thin" pointSize="24"/>
@@ -155,11 +160,12 @@
                                 <variation key="heightClass=compact-widthClass=regular" axis="horizontal" spacing="21"/>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="systemFillColor"/>
                         <constraints>
                             <constraint firstItem="8L9-XJ-OcH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3rY-HY-NLo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8L9-XJ-OcH" secondAttribute="trailing" id="8kx-s5-4gO"/>
                             <constraint firstItem="4eC-A6-AYn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="AR1-3S-IFu"/>
+                            <constraint firstItem="4eC-A6-AYn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="B7a-G3-dMX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VeA-t2-Q31" secondAttribute="bottom" constant="50" id="ECg-nq-z9T">
                                 <variation key="heightClass=compact-widthClass=regular" constant="10"/>
                             </constraint>
@@ -170,7 +176,7 @@
                                 <variation key="heightClass=compact-widthClass=regular" constant="20"/>
                             </constraint>
                             <constraint firstItem="8L9-XJ-OcH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="OsX-9g-mah"/>
-                            <constraint firstItem="4eC-A6-AYn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ia2-uw-t4e"/>
+                            <constraint firstItem="4eC-A6-AYn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Xms-zJ-6Rm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VeA-t2-Q31" secondAttribute="trailing" constant="100" id="nFg-Iv-ZbJ"/>
                             <constraint firstItem="Zdi-ya-NMW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wbb-u9-vRs"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8L9-XJ-OcH" secondAttribute="bottom" id="x3c-QI-S8e"/>

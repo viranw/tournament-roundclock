@@ -35,6 +35,7 @@ class round: NSObject, Codable {
     
 }
 
+//MARK: Round Times
 func initialBuild() {
     allRounds = []
     
@@ -45,9 +46,9 @@ func initialBuild() {
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
                                                                 month: 6,
-                                                                day: 9,
-                                                                hour: 9,
-                                                                minute: 30,
+                                                                day: 15,
+                                                                hour: 10,
+                                                                minute: 0,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Round 2",
@@ -57,7 +58,7 @@ func initialBuild() {
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
                                                                 month: 6,
-                                                                day: 9,
+                                                                day: 15,
                                                                 hour: 13,
                                                                 minute: 0,
                                                                 second: 0))!))
@@ -69,7 +70,7 @@ func initialBuild() {
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
                                                                 month: 6,
-                                                                day: 9,
+                                                                day: 15,
                                                                 hour: 15,
                                                                 minute: 30,
                                                                 second: 0))!))
@@ -81,7 +82,7 @@ func initialBuild() {
                           sched: cal.date(from: DateComponents(timeZone: tz,
                                                                year: 2019,
                                                                month: 6,
-                                                               day: 10,
+                                                               day: 16,
                                                                hour: 9,
                                                                minute: 30,
                                                                second: 0))!))
@@ -93,9 +94,9 @@ func initialBuild() {
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
                                                                 month: 6,
-                                                                day: 10,
-                                                                hour: 12,
-                                                                minute: 45,
+                                                                day: 16,
+                                                                hour: 13,
+                                                                minute: 0,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Semifinals",
@@ -105,9 +106,9 @@ func initialBuild() {
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
                                                                 month: 6,
-                                                                day: 10,
+                                                                day: 16,
                                                                 hour: 15,
-                                                                minute: 0,
+                                                                minute: 30,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Grand Final",
@@ -117,9 +118,9 @@ func initialBuild() {
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
                                                                 month: 6,
-                                                                day: 10,
+                                                                day: 16,
                                                                 hour: 17,
-                                                                minute: 30,
+                                                                minute: 0,
                                                                 second: 0))!))
     
     
