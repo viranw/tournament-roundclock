@@ -14,7 +14,7 @@ var allRoundsByDay:[Int:[round]] = [:]
 
 let cal = Calendar(identifier: .gregorian)
 
-var tournamentName = "UNSW Pre-Australs 2019"
+
 var tz = TimeZone(identifier: "Australia/Sydney")
 var dayLabels:[Int:String] = [0:"Saturday", 1:"Sunday"]
 
@@ -38,7 +38,7 @@ class round: NSObject, Codable {
 //MARK: Round Times
 func initialBuild() {
     allRounds = []
-
+    
     allRounds.append(round(label_long: "Round 1",
                            label_short: "R1",
                            day: 0,
