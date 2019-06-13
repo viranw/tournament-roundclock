@@ -10,7 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var dsLabel: UILabel!
-    
     @IBOutlet weak var daySelector: UISegmentedControl!
     @IBOutlet weak var roundSelector: UISegmentedControl!
     @IBOutlet weak var confirmButton: UIButton!
@@ -31,10 +30,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         timeNowLabel.text = ""
         roundLabel.text = ""
         initialBuild()
-        
         
         updateButton.setTitle("", for: .normal)
         
