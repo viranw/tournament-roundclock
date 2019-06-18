@@ -46,9 +46,9 @@ func initialBuild() {
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
                                                                 month: 6,
-                                                                day: 15,
+                                                                day: 22,
                                                                 hour: 10,
-                                                                minute: 0,
+                                                                minute: 30,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Round 2",
@@ -58,9 +58,9 @@ func initialBuild() {
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
                                                                 month: 6,
-                                                                day: 15,
+                                                                day: 22,
                                                                 hour: 13,
-                                                                minute: 0,
+                                                                minute: 30,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Round 3",
@@ -70,9 +70,9 @@ func initialBuild() {
                            sched: cal.date(from: DateComponents(timeZone: tz,
                                                                 year: 2019,
                                                                 month: 6,
-                                                                day: 15,
-                                                                hour: 15,
-                                                                minute: 30,
+                                                                day: 22,
+                                                                hour: 16,
+                                                                minute: 0,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Round 4",
@@ -83,8 +83,8 @@ func initialBuild() {
                                                                year: 2019,
                                                                month: 6,
                                                                day: 16,
-                                                               hour: 9,
-                                                               minute: 30,
+                                                               hour: 10,
+                                                               minute: 0,
                                                                second: 0))!))
     
     allRounds.append(round(label_long: "Round 5",
@@ -95,8 +95,8 @@ func initialBuild() {
                                                                 year: 2019,
                                                                 month: 6,
                                                                 day: 16,
-                                                                hour: 13,
-                                                                minute: 0,
+                                                                hour: 12,
+                                                                minute: 30,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Semifinals",
@@ -108,7 +108,7 @@ func initialBuild() {
                                                                 month: 6,
                                                                 day: 16,
                                                                 hour: 15,
-                                                                minute: 30,
+                                                                minute: 0,
                                                                 second: 0))!))
     
     allRounds.append(round(label_long: "Grand Final",
@@ -119,8 +119,8 @@ func initialBuild() {
                                                                 year: 2019,
                                                                 month: 6,
                                                                 day: 16,
-                                                                hour: 17,
-                                                                minute: 0,
+                                                                hour: 16,
+                                                                minute: 30,
                                                                 second: 0))!))
     
     

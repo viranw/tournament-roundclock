@@ -339,7 +339,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "viranweerasekera.UNSW-PA-RoundClock";
+				PRODUCT_BUNDLE_IDENTIFIER = "viranweerasekera.ANU-PA-RoundClock";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_UIKITFORMAC = NO;
@@ -362,7 +362,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "viranweerasekera.UNSW-PA-RoundClock";
+				PRODUCT_BUNDLE_IDENTIFIER = "viranweerasekera.ANU-PA-RoundClock";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_UIKITFORMAC = NO;
