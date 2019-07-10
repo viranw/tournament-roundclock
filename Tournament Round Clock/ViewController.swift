@@ -133,7 +133,7 @@ class ViewController: UIViewController {
         updateConfirmButtonState()
         
         if roundSelector.selectedSegmentIndex == -1 {
-            confirmButton.backgroundColor = UIColor.systemGray
+            confirmButton.backgroundColor = UIColor.gray
             confirmButton.setTitleColor(UIColor.white, for: .normal)
             confirmButton.isUserInteractionEnabled = false
         }
@@ -167,11 +167,11 @@ class ViewController: UIViewController {
         }
         
         if isEnabled {
-            confirmButton.backgroundColor = UIColor.systemGreen
+            confirmButton.backgroundColor = UIColor.green
             confirmButton.setTitleColor(UIColor.white, for: .normal)
             confirmButton.isUserInteractionEnabled = true
         } else {
-            confirmButton.backgroundColor = UIColor.systemGray
+            confirmButton.backgroundColor = UIColor.gray
             confirmButton.setTitleColor(UIColor.white, for: .normal)
             confirmButton.isUserInteractionEnabled = false
         }
